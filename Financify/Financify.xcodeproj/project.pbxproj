@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		7271F535247887670071040A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F534247887670071040A /* AppDelegate.swift */; };
 		7271F537247887670071040A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F536247887670071040A /* SceneDelegate.swift */; };
-		7271F539247887670071040A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F538247887670071040A /* ViewController.swift */; };
 		7271F53C247887670071040A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7271F53A247887670071040A /* Main.storyboard */; };
 		7271F53E247887670071040A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7271F53D247887670071040A /* Assets.xcassets */; };
 		7271F541247887670071040A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7271F53F247887670071040A /* LaunchScreen.storyboard */; };
+		7271F55324788B160071040A /* Budget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7271F55124788B160071040A /* Budget.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7271F531247887670071040A /* Financify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Financify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7271F534247887670071040A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7271F536247887670071040A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7271F538247887670071040A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7271F53B247887670071040A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7271F53D247887670071040A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7271F540247887670071040A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7271F542247887670071040A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7271F55224788B160071040A /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +56,79 @@
 		7271F533247887670071040A /* Financify */ = {
 			isa = PBXGroup;
 			children = (
-				7271F534247887670071040A /* AppDelegate.swift */,
-				7271F536247887670071040A /* SceneDelegate.swift */,
-				7271F538247887670071040A /* ViewController.swift */,
-				7271F53A247887670071040A /* Main.storyboard */,
-				7271F53D247887670071040A /* Assets.xcassets */,
-				7271F53F247887670071040A /* LaunchScreen.storyboard */,
-				7271F542247887670071040A /* Info.plist */,
+				7271F54F24788A490071040A /* Helper Files */,
+				7271F54E24788A410071040A /* Extensions */,
+				7271F54D24788A320071040A /* Model Controllers */,
+				7271F54C24788A270071040A /* Models */,
+				7271F54B24788A1C0071040A /* View Controllers */,
+				7271F54A24788A130071040A /* Views */,
+				7271F549247889920071040A /* Storyboards */,
+				7271F548247889760071040A /* Resources */,
 			);
 			path = Financify;
+			sourceTree = "<group>";
+		};
+		7271F548247889760071040A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7271F53D247887670071040A /* Assets.xcassets */,
+				7271F542247887670071040A /* Info.plist */,
+				7271F534247887670071040A /* AppDelegate.swift */,
+				7271F536247887670071040A /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7271F549247889920071040A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7271F53A247887670071040A /* Main.storyboard */,
+				7271F53F247887670071040A /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		7271F54A24788A130071040A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7271F54B24788A1C0071040A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7271F54C24788A270071040A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7271F55124788B160071040A /* Budget.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7271F54D24788A320071040A /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		7271F54E24788A410071040A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7271F54F24788A490071040A /* Helper Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Helper Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7271F539247887670071040A /* ViewController.swift in Sources */,
+				7271F55324788B160071040A /* Budget.xcdatamodeld in Sources */,
 				7271F535247887670071040A /* AppDelegate.swift in Sources */,
 				7271F537247887670071040A /* SceneDelegate.swift in Sources */,
 			);
@@ -286,7 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 36JMR38FZL;
-				INFOPLIST_FILE = Financify/Info.plist;
+				INFOPLIST_FILE = Financify/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +368,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 36JMR38FZL;
-				INFOPLIST_FILE = Financify/Info.plist;
+				INFOPLIST_FILE = Financify/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,6 +402,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7271F55124788B160071040A /* Budget.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7271F55224788B160071040A /* User.xcdatamodel */,
+			);
+			currentVersion = 7271F55224788B160071040A /* User.xcdatamodel */;
+			path = Budget.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7271F529247887670071040A /* Project object */;
 }
