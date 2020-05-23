@@ -7,3 +7,37 @@
 //
 
 import Foundation
+import CoreData
+
+extension User {
+    
+    @discardableResult convenience init(firstName: String,
+                                        funds: Double,
+                                        lastName: String,
+                                        recordID: UUID,
+                                        context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+        self.init(context: context)
+        
+        self.firstName = firstName
+        self.funds = funds
+        self.lastName = lastName
+        self.recordID = recordID
+    }
+    
+    @discardableResult convenience init?(userRepresentation: UserRepresentation,
+                                         context: NSManagedObjectContext) {
+        guard
+            let firstName = userRepresentation.firstName,
+            let funds = userRepresentation.funds,
+            let lastName = userRepresentation.lastName,
+            let recordID = userRepresentation.recordID
+            else {
+                return nil
+        }
+        
+        self.init(firstName: firstName,
+                  funds: funds,
+                  lastName: lastName,
+                  recordID: recordID)
+    }
+}
