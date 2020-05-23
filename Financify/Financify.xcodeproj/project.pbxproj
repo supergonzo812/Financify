@@ -7,15 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		726A02972479AA5C00A5BAF6 /* Budget+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726A02962479AA5C00A5BAF6 /* Budget+Convenience.swift */; };
+		726A029B2479AB7300A5BAF6 /* BudgetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726A029A2479AB7300A5BAF6 /* BudgetType.swift */; };
 		7271F535247887670071040A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F534247887670071040A /* AppDelegate.swift */; };
 		7271F537247887670071040A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F536247887670071040A /* SceneDelegate.swift */; };
 		7271F53C247887670071040A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7271F53A247887670071040A /* Main.storyboard */; };
 		7271F53E247887670071040A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7271F53D247887670071040A /* Assets.xcassets */; };
 		7271F541247887670071040A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7271F53F247887670071040A /* LaunchScreen.storyboard */; };
-		7271F55324788B160071040A /* Budget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7271F55124788B160071040A /* Budget.xcdatamodeld */; };
+		7271F55324788B160071040A /* Financify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7271F55124788B160071040A /* Financify.xcdatamodeld */; };
+		729C63542479AE22003C72CB /* BudgetRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C63532479AE22003C72CB /* BudgetRepresentation.swift */; };
+		729C63562479B749003C72CB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C63552479B749003C72CB /* CoreDataStack.swift */; };
+		729C63592479C30E003C72CB /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C63582479C30E003C72CB /* User+Convenience.swift */; };
+		729C635B2479C319003C72CB /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C635A2479C319003C72CB /* UserRepresentation.swift */; };
+		729C635D2479C333003C72CB /* Expense+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C635C2479C333003C72CB /* Expense+Convenience.swift */; };
+		729C635F2479C341003C72CB /* ExpenseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729C635E2479C341003C72CB /* ExpenseRepresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		726A02962479AA5C00A5BAF6 /* Budget+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+Convenience.swift"; sourceTree = "<group>"; };
+		726A029A2479AB7300A5BAF6 /* BudgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetType.swift; sourceTree = "<group>"; };
 		7271F531247887670071040A /* Financify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Financify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7271F534247887670071040A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7271F536247887670071040A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +34,12 @@
 		7271F540247887670071040A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7271F542247887670071040A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7271F55224788B160071040A /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
+		729C63532479AE22003C72CB /* BudgetRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetRepresentation.swift; sourceTree = "<group>"; };
+		729C63552479B749003C72CB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		729C63582479C30E003C72CB /* User+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience.swift"; sourceTree = "<group>"; };
+		729C635A2479C319003C72CB /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
+		729C635C2479C333003C72CB /* Expense+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+Convenience.swift"; sourceTree = "<group>"; };
+		729C635E2479C341003C72CB /* ExpenseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepresentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +53,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		726A02952479A9F400A5BAF6 /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				726A02962479AA5C00A5BAF6 /* Budget+Convenience.swift */,
+				729C63532479AE22003C72CB /* BudgetRepresentation.swift */,
+			);
+			path = Budget;
+			sourceTree = "<group>";
+		};
+		726A02982479AA6A00A5BAF6 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+				729C635C2479C333003C72CB /* Expense+Convenience.swift */,
+				729C635E2479C341003C72CB /* ExpenseRepresentation.swift */,
+			);
+			path = Expense;
+			sourceTree = "<group>";
+		};
+		726A02992479AA7400A5BAF6 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				729C63582479C30E003C72CB /* User+Convenience.swift */,
+				729C635A2479C319003C72CB /* UserRepresentation.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		7271F528247887670071040A = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +148,11 @@
 		7271F54C24788A270071040A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7271F55124788B160071040A /* Budget.xcdatamodeld */,
+				729C63572479B760003C72CB /* CoreData */,
+				726A02992479AA7400A5BAF6 /* User */,
+				726A02952479A9F400A5BAF6 /* Budget */,
+				726A02982479AA6A00A5BAF6 /* Expense */,
+				726A029A2479AB7300A5BAF6 /* BudgetType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +176,15 @@
 			children = (
 			);
 			path = "Helper Files";
+			sourceTree = "<group>";
+		};
+		729C63572479B760003C72CB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7271F55124788B160071040A /* Financify.xcdatamodeld */,
+				729C63552479B749003C72CB /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,8 +258,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7271F55324788B160071040A /* Budget.xcdatamodeld in Sources */,
+				729C63592479C30E003C72CB /* User+Convenience.swift in Sources */,
+				729C635F2479C341003C72CB /* ExpenseRepresentation.swift in Sources */,
+				729C63562479B749003C72CB /* CoreDataStack.swift in Sources */,
+				7271F55324788B160071040A /* Financify.xcdatamodeld in Sources */,
 				7271F535247887670071040A /* AppDelegate.swift in Sources */,
+				726A029B2479AB7300A5BAF6 /* BudgetType.swift in Sources */,
+				729C63542479AE22003C72CB /* BudgetRepresentation.swift in Sources */,
+				729C635D2479C333003C72CB /* Expense+Convenience.swift in Sources */,
+				726A02972479AA5C00A5BAF6 /* Budget+Convenience.swift in Sources */,
+				729C635B2479C319003C72CB /* UserRepresentation.swift in Sources */,
 				7271F537247887670071040A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,13 +468,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7271F55124788B160071040A /* Budget.xcdatamodeld */ = {
+		7271F55124788B160071040A /* Financify.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				7271F55224788B160071040A /* User.xcdatamodel */,
 			);
 			currentVersion = 7271F55224788B160071040A /* User.xcdatamodel */;
-			path = Budget.xcdatamodeld;
+			path = Financify.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

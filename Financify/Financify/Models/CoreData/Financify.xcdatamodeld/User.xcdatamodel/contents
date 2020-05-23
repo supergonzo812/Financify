@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="Financify1.0">
+    <entity name="Budget" representedClassName="Budget" syncable="YES" codeGenerationType="class">
+        <attribute name="balance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="budgetAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="budgetType" optional="YES" attributeType="String"/>
+        <attribute name="recordID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Expense" inverseName="budget" inverseEntity="Expense"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="budgets" inverseEntity="User"/>
+    </entity>
+    <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="expenseDescription" optional="YES" attributeType="String"/>
+        <attribute name="recordID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="expenses" inverseEntity="Budget"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="User" inverseName="expenses" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="funds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="recordID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="budgets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Budget" inverseName="user" inverseEntity="Budget"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="user" inverseEntity="Expense"/>
+    </entity>
+    <elements>
+        <element name="Budget" positionX="431.953125" positionY="-17.3984375" width="128" height="133"/>
+        <element name="Expense" positionX="156.03125" positionY="138.00390625" width="128" height="118"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="133"/>
+    </elements>
+</model>
