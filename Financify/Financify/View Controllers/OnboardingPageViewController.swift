@@ -8,9 +8,14 @@
 
 import UIKit
 
-class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDataSource {
+protocol OnboardingPageViewControllerDelegate: class {
+    func didUpdatePageIndex(currentIndex: Int)
+}
+
+class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     // MARK: - Properties
+    weak var onboardingPageViewDelegate: OnboardingPageViewControllerDelegate?
     var pageHeadings = ["Welcome to Financify", "Page 2 Title"]
     var pageImages = ["FinancifyLogo"]
     var pageSubHeadings = ["Financify is the best budgeting app. Making it easier and faster to manage your finances."]
@@ -44,8 +49,29 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         return nil
     }
     
+    func forwardPage() {
+        currentIndex += 1
+        if let nextViewController = contentViewController(at: currentIndex) {
+            setViewControllers([nextViewController], direction: .forward, animated: true)
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            if let contentViewController = pageViewController.viewControllers?.first as? OnboardingContentViewController {
+                currentIndex = contentViewController.index
+                onboardingPageViewDelegate?.didUpdatePageIndex(currentIndex: currentIndex)
+            }
+        }
+    }
+    
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource = self
+        delegate = self
+        if let startingViewController = contentViewController(at: 0) {
+            setViewControllers([startingViewController], direction: .forward, animated: true)
+        }
     }
 }
