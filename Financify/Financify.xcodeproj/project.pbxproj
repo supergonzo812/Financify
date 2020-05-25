@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C1D8CC5247C85B700027878 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */; };
 		5C94F72C247C5BA40000B0EA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */; };
+		5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */; };
+		5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */; };
 		726A02972479AA5C00A5BAF6 /* Budget+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726A02962479AA5C00A5BAF6 /* Budget+Convenience.swift */; };
 		726A029B2479AB7300A5BAF6 /* BudgetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726A029A2479AB7300A5BAF6 /* BudgetType.swift */; };
 		7271F535247887670071040A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F534247887670071040A /* AppDelegate.swift */; };
@@ -25,7 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
 		726A02962479AA5C00A5BAF6 /* Budget+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+Convenience.swift"; sourceTree = "<group>"; };
 		726A029A2479AB7300A5BAF6 /* BudgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetType.swift; sourceTree = "<group>"; };
 		7271F531247887670071040A /* Financify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Financify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +150,9 @@
 		7271F54B24788A1C0071040A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */,
+				5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */,
+				5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -271,7 +280,10 @@
 				729C63542479AE22003C72CB /* BudgetRepresentation.swift in Sources */,
 				729C635D2479C333003C72CB /* Expense+Convenience.swift in Sources */,
 				726A02972479AA5C00A5BAF6 /* Budget+Convenience.swift in Sources */,
+				5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */,
+				5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */,
 				729C635B2479C319003C72CB /* UserRepresentation.swift in Sources */,
+				5C1D8CC5247C85B700027878 /* OnboardingPageViewController.swift in Sources */,
 				7271F537247887670071040A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
