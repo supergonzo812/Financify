@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C1D8CC5247C85B700027878 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */; };
-		5C8A442E247D72A300244909 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A442D247D72A300244909 /* CategoryTableViewController.swift */; };
-		5C8A4430247D758500244909 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A442F247D758500244909 /* DetailTableViewController.swift */; };
-		5C94F72C247C5BA40000B0EA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */; };
-		5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */; };
-		5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */; };
-		7267CFC4247D7E1F00590852 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC4247B1E1A00DCE26E /* ShareController.swift */; };
+<<<<<<< HEAD
+		72682AC5247B1E1A00DCE26E /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC4247B1E1A00DCE26E /* ShareController.swift */; };
 		72682AC7247B1F3500DCE26E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC6247B1F3500DCE26E /* Notifications.swift */; };
 		72682ACB247B2F0500DCE26E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72682ACA247B2F0500DCE26E /* CloudKit.framework */; };
 		7269B2BC247C214100B4D967 /* CKRecordZone.ID+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7269B2BB247C214100B4D967 /* CKRecordZone.ID+Dictionary.swift */; };
+=======
+		5C1D8CC5247C85B700027878 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */; };
+		5C1D8CC7247C956300027878 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D8CC6247C956300027878 /* LoginViewController.swift */; };
+		5C94F72C247C5BA40000B0EA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */; };
+		5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */; };
+		5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */; };
+>>>>>>> ee01a84622403fbe524038a4ed02978ca41911a1
 		726A02972479AA5C00A5BAF6 /* Budget+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726A02962479AA5C00A5BAF6 /* Budget+Convenience.swift */; };
 		726A029B2479AB7300A5BAF6 /* BudgetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726A029A2479AB7300A5BAF6 /* BudgetType.swift */; };
 		7271F535247887670071040A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7271F534247887670071040A /* AppDelegate.swift */; };
@@ -34,17 +36,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
-		5C8A442D247D72A300244909 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
-		5C8A442F247D758500244909 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
-		5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		72682AC4247B1E1A00DCE26E /* ShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		72682AC6247B1F3500DCE26E /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		72682AC8247B2F0000DCE26E /* Financify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Financify.entitlements; sourceTree = "<group>"; };
 		72682ACA247B2F0500DCE26E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		7269B2BB247C214100B4D967 /* CKRecordZone.ID+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecordZone.ID+Dictionary.swift"; sourceTree = "<group>"; };
+=======
+		5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		5C1D8CC6247C956300027878 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
+>>>>>>> ee01a84622403fbe524038a4ed02978ca41911a1
 		726A02962479AA5C00A5BAF6 /* Budget+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+Convenience.swift"; sourceTree = "<group>"; };
 		726A029A2479AB7300A5BAF6 /* BudgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetType.swift; sourceTree = "<group>"; };
 		7271F531247887670071040A /* Financify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Financify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,9 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */,
-				5C8A442D247D72A300244909 /* CategoryTableViewController.swift */,
+				5C1D8CC6247C956300027878 /* LoginViewController.swift */,
 				5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */,
-				5C8A442F247D758500244909 /* DetailTableViewController.swift */,
 				5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */,
 			);
 			path = "View Controllers";
@@ -304,8 +307,11 @@
 				729C63592479C30E003C72CB /* User+Convenience.swift in Sources */,
 				729C635F2479C341003C72CB /* ExpenseRepresentation.swift in Sources */,
 				729C63562479B749003C72CB /* CoreDataStack.swift in Sources */,
-				5C8A442E247D72A300244909 /* CategoryTableViewController.swift in Sources */,
-				5C8A4430247D758500244909 /* DetailTableViewController.swift in Sources */,
+<<<<<<< HEAD
+				72682AC5247B1E1A00DCE26E /* ShareController.swift in Sources */,
+=======
+				5C1D8CC7247C956300027878 /* LoginViewController.swift in Sources */,
+>>>>>>> ee01a84622403fbe524038a4ed02978ca41911a1
 				7271F55324788B160071040A /* Financify.xcdatamodeld in Sources */,
 				72682AC7247B1F3500DCE26E /* Notifications.swift in Sources */,
 				7271F535247887670071040A /* AppDelegate.swift in Sources */,
@@ -316,7 +322,6 @@
 				5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */,
 				5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */,
 				729C635B2479C319003C72CB /* UserRepresentation.swift in Sources */,
-				7267CFC4247D7E1F00590852 /* ShareController.swift in Sources */,
 				5C1D8CC5247C85B700027878 /* OnboardingPageViewController.swift in Sources */,
 				7271F537247887670071040A /* SceneDelegate.swift in Sources */,
 			);
@@ -464,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Financify/Financify.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T8B9LKFKJY;
+				DEVELOPMENT_TEAM = 36JMR38FZL;
 				INFOPLIST_FILE = Financify/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -483,7 +488,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Financify/Financify.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T8B9LKFKJY;
+				DEVELOPMENT_TEAM = 36JMR38FZL;
 				INFOPLIST_FILE = Financify/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
