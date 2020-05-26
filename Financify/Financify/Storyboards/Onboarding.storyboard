@@ -72,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="865.21739130434787" y="836.82065217391312"/>
         </scene>
-        <!--View Controller-->
+        <!--Onboarding View Controller-->
         <scene sceneID="aiP-di-HjD">
             <objects>
-                <viewController id="FN2-04-Sjv" sceneMemberID="viewController">
+                <viewController id="FN2-04-Sjv" customClass="OnboardingViewController" customModule="Financify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qve-Eg-9dx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,6 +111,9 @@
                                                 <state key="normal" title="NEXT">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="nextButtonTapped:" destination="FN2-04-Sjv" eventType="touchUpInside" id="HdH-SW-RoE"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6j-P3-u8e">
                                                 <rect key="frame" x="0.0" y="127" width="190" height="30"/>
@@ -139,6 +142,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="t9O-7i-NLv"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="Cnz-4O-LGN" id="MBA-f3-Z74"/>
+                        <outlet property="pageControl" destination="hMH-Ra-xPM" id="Yp5-TH-uk7"/>
+                        <outlet property="skipButton" destination="S6j-P3-u8e" id="oeR-0e-nUz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nXD-91-H56" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
