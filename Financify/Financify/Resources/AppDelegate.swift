@@ -8,12 +8,13 @@
 
 import UIKit
 import UserNotifications
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        application.registerForRemoteNotifications()
+        application.registerForRemoteNotifications() // test if this will have an affect on the notifications
         return true
     }
     
@@ -22,7 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // App is ready to receive push notifications
+        let subscription = CKQuerySubscription(recordType: "", predicate: NSPredicate(format: "PREDICATE"), options: .firesOnRecordCreation)
+        let info = CKSubscription.NotificationInfo()
+        info.alertBody = "A new notification has been posted!"
+        info.shouldBadge = true
+        info.soundName = "default"
+        
+        subscription.notificationInfo = info
+        
+        CKContainer.default().publicCloudDatabase.save(subscription) { (subscription, error) in
+            if error != nil {
+                NSLog("Error: \(error)")
+                return
+            }
+        }
     }
     
     // MARK: UISceneSession Lifecycle
