@@ -43,6 +43,11 @@ class OnboardingViewController: UIViewController, OnboardingPageViewControllerDe
         updateUI()
     }
     
+    @IBAction func skipButtonTapped(_ sender: UIButton) {
+        UserDefaults.standard.set(true, forKey: "hasViewedOnboarding")
+        dismiss(animated: true)
+    }
+    
     // MARK: - Methods
     func didUpdatePageIndex(currentIndex: Int) {
         updateUI()
@@ -55,20 +60,18 @@ class OnboardingViewController: UIViewController, OnboardingPageViewControllerDe
                 nextButton.setTitle("Next", for: .normal)
                 skipButton.isHidden = false
             case 1:
-                nextButton.setTitle("Next", for: .normal)
+                nextButton.setTitle("Allow Notifications", for: .normal)
                 skipButton.isHidden = false
             case 2:
                 nextButton.setTitle("Next", for: .normal)
+            case 3:
+                nextButton.setTitle("Get started", for: .normal)
+                skipButton.isHidden = true
             default:
                 break
             }
             pageControl.currentPage = index
         }
-    }
-    
-    // MARK: - View LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     // MARK: - Navigation

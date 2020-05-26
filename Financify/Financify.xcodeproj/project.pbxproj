@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C1D8CC5247C85B700027878 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */; };
+		5C1D8CC7247C956300027878 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D8CC6247C956300027878 /* LoginViewController.swift */; };
 		5C94F72C247C5BA40000B0EA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */; };
 		5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */; };
 		5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		5C1D8CC6247C956300027878 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */,
+				5C1D8CC6247C956300027878 /* LoginViewController.swift */,
 				5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */,
 				5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */,
 			);
@@ -274,6 +277,7 @@
 				729C63592479C30E003C72CB /* User+Convenience.swift in Sources */,
 				729C635F2479C341003C72CB /* ExpenseRepresentation.swift in Sources */,
 				729C63562479B749003C72CB /* CoreDataStack.swift in Sources */,
+				5C1D8CC7247C956300027878 /* LoginViewController.swift in Sources */,
 				7271F55324788B160071040A /* Financify.xcdatamodeld in Sources */,
 				7271F535247887670071040A /* AppDelegate.swift in Sources */,
 				726A029B2479AB7300A5BAF6 /* BudgetType.swift in Sources */,
