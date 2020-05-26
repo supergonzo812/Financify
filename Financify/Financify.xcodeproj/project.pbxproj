@@ -16,6 +16,8 @@
 		7267CFC4247D7E1F00590852 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC4247B1E1A00DCE26E /* ShareController.swift */; };
 		7267CFC6247DAAD100590852 /* BudgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267CFC5247DAAD100590852 /* BudgetController.swift */; };
 		7267CFC8247DAD3A00590852 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267CFC7247DAD3A00590852 /* CloudKitManager.swift */; };
+		7267CFCA247DB72300590852 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267CFC9247DB72300590852 /* UserController.swift */; };
+		7267CFCC247DB73100590852 /* ExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267CFCB247DB73100590852 /* ExpenseController.swift */; };
 		72682AC7247B1F3500DCE26E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC6247B1F3500DCE26E /* Notifications.swift */; };
 		72682ACB247B2F0500DCE26E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72682ACA247B2F0500DCE26E /* CloudKit.framework */; };
 		7269B2BC247C214100B4D967 /* CKRecordZone.ID+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7269B2BB247C214100B4D967 /* CKRecordZone.ID+Dictionary.swift */; };
@@ -44,6 +46,8 @@
 		5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
 		7267CFC5247DAAD100590852 /* BudgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetController.swift; sourceTree = "<group>"; };
 		7267CFC7247DAD3A00590852 /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		7267CFC9247DB72300590852 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		7267CFCB247DB73100590852 /* ExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseController.swift; sourceTree = "<group>"; };
 		72682AC4247B1E1A00DCE26E /* ShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		72682AC6247B1F3500DCE26E /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		72682AC8247B2F0000DCE26E /* Financify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Financify.entitlements; sourceTree = "<group>"; };
@@ -202,8 +206,10 @@
 		7271F54D24788A320071040A /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				72682AC4247B1E1A00DCE26E /* ShareController.swift */,
+				7267CFC9247DB72300590852 /* UserController.swift */,
 				7267CFC5247DAAD100590852 /* BudgetController.swift */,
+				7267CFCB247DB73100590852 /* ExpenseController.swift */,
+				72682AC4247B1E1A00DCE26E /* ShareController.swift */,
 				7267CFC7247DAD3A00590852 /* CloudKitManager.swift */,
 			);
 			path = "Model Controllers";
@@ -320,8 +326,10 @@
 				729C63542479AE22003C72CB /* BudgetRepresentation.swift in Sources */,
 				729C635D2479C333003C72CB /* Expense+Convenience.swift in Sources */,
 				726A02972479AA5C00A5BAF6 /* Budget+Convenience.swift in Sources */,
+				7267CFCA247DB72300590852 /* UserController.swift in Sources */,
 				5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */,
 				7267CFC8247DAD3A00590852 /* CloudKitManager.swift in Sources */,
+				7267CFCC247DB73100590852 /* ExpenseController.swift in Sources */,
 				5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */,
 				729C635B2479C319003C72CB /* UserRepresentation.swift in Sources */,
 				7267CFC4247D7E1F00590852 /* ShareController.swift in Sources */,

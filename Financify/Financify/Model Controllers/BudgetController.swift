@@ -11,11 +11,11 @@ import CloudKit
 
 class BudgetController {
     
-    let ckManager: CloudKitManager?
-    
-    func fetchAllBudgetsFromCloudKit(completion: @escaping () -> Void) {
-        guard let ckManager = ckManager else { return }
-        
-        ckManager.fetchRecordsOf(type: Budget., database: <#T##CKDatabase#>, completion: <#T##([CKRecord]?, Error?) -> Void#>)
-    }
+//    let ckManager: CloudKitManager?
+//
+//    func fetchAllBudgetsFromCloudKit(completion: @escaping () -> Void) {
+//        guard let ckManager = ckManager else { return }
+//
+//        ckManager.fetchRecordsOf(type: Budget., database: <#T##CKDatabase#>, completion: <#T##([CKRecord]?, Error?) -> Void#>)
+//    }
 }

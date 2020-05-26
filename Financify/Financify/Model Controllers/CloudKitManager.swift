@@ -11,7 +11,7 @@ import CloudKit
 
 class CloudKitManager {
     
-    static let shared = CloudKitManager()
+    static let database = CKContainer.default().privateCloudDatabase
     
     func saveRecordToCloudKit(record: CKRecord, database: CKDatabase, completion: @escaping (CKRecord?, Error?) -> Void = { (_, _ ) in }) {
         
