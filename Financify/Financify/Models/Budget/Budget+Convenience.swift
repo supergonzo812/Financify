@@ -20,13 +20,32 @@ extension Budget {
     
     private static let typeKey = "Budget"
     private static let balanceKey = "balance"
+    private static let budgetAmountKey = "budgetAmount"
     private static let budgetTypeKey = "budgetType"
+    private static let isSharedKey = "isSharedBudget"
+    private static let recordIDKey = "recordID"
+    private static let titleKey = "title"
+    
     
     var cloudKitRecord: CKRecord {
-        let record = CKRecord(recordType: Budget.typeKey, recordID: CKRecord.ID(recordName: recordID!.uuidString,
+        
+        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        
+        let record = CKRecord(recordType: Budget.typeKey, recordID: CKRecord.ID(recordName: recordIDString,
                                                                                 zoneID: ShareController.sharingZoneID))
 
-        record.setValue(self.balance, forKey: Budget.balanceKey)
+        record.setValue(self.balance,
+                        forKey: Budget.balanceKey)
+        record.setValue(self.budgetAmount,
+                        forKey: Budget.budgetAmountKey)
+        record.setValue(self.budgetType,
+                        forKey: Budget.budgetTypeKey)
+        record.setValue(self.isSharedBudget,
+                        forKey: Budget.isSharedKey)
+        record.setValue(self.recordID,
+                        forKey: Budget.recordIDKey)
+        record.setValue(self.title,
+                        forKey: Budget.titleKey)
         return record
     }
     
@@ -83,4 +102,8 @@ extension Budget {
         self.title = title
         self.isSharedBudget = isSharedBudget
     }
+}
+
+func ==(lhs: Budget, rhs: Budget) -> Bool {
+    return lhs.recordID == rhs.recordID
 }
