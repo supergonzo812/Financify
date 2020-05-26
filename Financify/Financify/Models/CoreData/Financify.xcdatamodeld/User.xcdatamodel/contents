@@ -4,7 +4,9 @@
         <attribute name="balance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="budgetAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="budgetType" optional="YES" attributeType="String"/>
+        <attribute name="isSharedBudget" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="recordID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Expense" inverseName="budget" inverseEntity="Expense"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="budgets" inverseEntity="User"/>
     </entity>
@@ -24,7 +26,7 @@
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="user" inverseEntity="Expense"/>
     </entity>
     <elements>
-        <element name="Budget" positionX="431.953125" positionY="-17.3984375" width="128" height="133"/>
+        <element name="Budget" positionX="431.953125" positionY="-17.3984375" width="128" height="163"/>
         <element name="Expense" positionX="156.03125" positionY="138.00390625" width="128" height="118"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="133"/>
     </elements>

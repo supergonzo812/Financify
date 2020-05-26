@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+extension Notification.Name {
+    static var budgetsWereSet = Notification.Name("budgetsWereSet")
+    static var failedToSaveShare = Notification.Name("failedToSaveShare")
+    static var didSaveShare = Notification.Name("didSaveShare")
+    static var didAcceptShare = Notification.Name("didAcceptShare")
+}
