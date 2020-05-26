@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 extension Expense {
     
@@ -34,5 +35,19 @@ extension Expense {
         self.init(amount: amount,
                   expenseDescription: expenseDescription,
                   recordID: recordID)
+    }
+    
+    @discardableResult convenience init?(cloudKitRecord: CKRecord, isSharedBudget: Bool = false) {
+        
+        self.init()
+        guard
+                 let expenseDescription = expenseDescription,
+                 let recordID = recordID else {
+                     return nil
+             }
+        
+        self.amount = amount
+        self.expenseDescription = expenseDescription
+        self.recordID = recordID
     }
 }

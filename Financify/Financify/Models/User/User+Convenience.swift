@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 extension User {
     
@@ -39,5 +40,21 @@ extension User {
                   funds: funds,
                   lastName: lastName,
                   recordID: recordID)
+    }
+    
+    @discardableResult convenience init?(cloudKitRecord: CKRecord, isSharedBudget: Bool = false) {
+        
+        self.init()
+        guard
+            let firstName = firstName,
+            let lasName = lastName,
+            let recordID = recordID else {
+                return nil
+        }
+        
+        self.firstName = firstName
+        self.funds = funds
+        self.lastName = lastName
+        self.recordID = recordID
     }
 }
