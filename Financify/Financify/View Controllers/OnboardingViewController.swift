@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import UserNotifications
 
-class OnboardingViewController: UIViewController, OnboardingPageViewControllerDelegate {
+class OnboardingViewController: UIViewController, OnboardingPageViewControllerDelegate, UNUserNotificationCenterDelegate {
     
     // MARK: - Properties
     weak var onboardingPageViewController: OnboardingPageViewController?
@@ -30,7 +31,7 @@ class OnboardingViewController: UIViewController, OnboardingPageViewControllerDe
             case 0:
                 onboardingPageViewController?.forwardPage()
             case 1:
-                onboardingPageViewController?.forwardPage()
+                onboardingRequestNotification()
             case 2:
                 onboardingPageViewController?.forwardPage()
             case 3:
@@ -72,6 +73,21 @@ class OnboardingViewController: UIViewController, OnboardingPageViewControllerDe
             }
             pageControl.currentPage = index
         }
+    }
+    
+    func onboardingRequestNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            if granted {
+                DispatchQueue.main.async {
+                    self.onboardingPageViewController?.forwardPage()
+                    self.updateUI()
+                }
+            }
+        }
+        UNUserNotificationCenter.current().delegate = self
     }
     
     // MARK: - Navigation
