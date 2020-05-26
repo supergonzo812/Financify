@@ -14,16 +14,36 @@ import CloudKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        application.registerForRemoteNotifications() // test if this will have an affect on the notifications
+        // test if this will have an affect on the notifications
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+             if let error = error {
+                 print("Error: \(error.localizedDescription)")
+             }
+             if granted {
+                 DispatchQueue.main.async {
+//                     self.onboardingPageViewController?.forwardPage()
+//                     self.updateUI()
+                    
+                    UIApplication.shared.registerForRemoteNotifications()
+                 }
+             }
+         }
+         UNUserNotificationCenter.current().delegate = self
+        
         return true
     }
     
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("\(error)")
+    }
+ 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
+        
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let subscription = CKQuerySubscription(recordType: "", predicate: NSPredicate(format: "PREDICATE"), options: .firesOnRecordCreation)
+        let subscription = CKQuerySubscription(recordType: "GlobalNotification", predicate: NSPredicate(format: "TRUEPREDICATE"), options: [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion])
         let info = CKSubscription.NotificationInfo()
         info.alertBody = "A new notification has been posted!"
         info.shouldBadge = true

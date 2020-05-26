@@ -21,7 +21,7 @@ class userController {
 //                        lastName: lastName,
 //                        recordID: UUID())
 //
-//        ckManager.saveRecordToCloudKit(record: ,
+//        ckManager.saveRecordToCloudKit(record: user.recordID,
 //                                       database: CloudKitManager.database)
 //
 //    }
