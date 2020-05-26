@@ -12,7 +12,7 @@
 		5C94F72C247C5BA40000B0EA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C94F72B247C5BA40000B0EA /* Onboarding.storyboard */; };
 		5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */; };
 		5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */; };
-		72682AC5247B1E1A00DCE26E /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC4247B1E1A00DCE26E /* ShareController.swift */; };
+		7267CFC4247D7E1F00590852 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC4247B1E1A00DCE26E /* ShareController.swift */; };
 		72682AC7247B1F3500DCE26E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72682AC6247B1F3500DCE26E /* Notifications.swift */; };
 		72682ACB247B2F0500DCE26E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72682ACA247B2F0500DCE26E /* CloudKit.framework */; };
 		7269B2BC247C214100B4D967 /* CKRecordZone.ID+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7269B2BB247C214100B4D967 /* CKRecordZone.ID+Dictionary.swift */; };
@@ -312,6 +312,7 @@
 				5C94F72E247C815A0000B0EA /* OnboardingViewController.swift in Sources */,
 				5C94F730247C82EF0000B0EA /* OnboardingContentViewController.swift in Sources */,
 				729C635B2479C319003C72CB /* UserRepresentation.swift in Sources */,
+				7267CFC4247D7E1F00590852 /* ShareController.swift in Sources */,
 				5C1D8CC5247C85B700027878 /* OnboardingPageViewController.swift in Sources */,
 				7271F537247887670071040A /* SceneDelegate.swift in Sources */,
 			);

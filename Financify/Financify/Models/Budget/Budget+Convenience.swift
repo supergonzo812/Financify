@@ -23,9 +23,11 @@ extension Budget {
     private static let budgetTypeKey = "budgetType"
     
     var cloudKitRecord: CKRecord {
-        let record = CKRecord(recordType: Budget.typeKey, recordID: recordID)
+        let record = CKRecord(recordType: Budget.typeKey, recordID: CKRecord.ID(recordName: recordID!.uuidString,
+                                                                                zoneID: ShareController.sharingZoneID))
 
         record.setValue(self.balance, forKey: Budget.balanceKey)
+        return record
     }
     
     @discardableResult convenience init(balance: Double,
@@ -46,6 +48,7 @@ extension Budget {
     }
     
     @discardableResult convenience init?(budgetRepresentation: BudgetRepresentation, context: NSManagedObjectContext) {
+        self.init()
         guard
             let balance = budgetRepresentation.balance,
             let budgetAmount = budgetRepresentation.budgetAmount,
@@ -64,6 +67,8 @@ extension Budget {
     }
     
     @discardableResult convenience init?(cloudKitRecord: CKRecord, isSharedBudget: Bool = false) {
+        
+        self.init()
         guard
                  let budgetType = budgetType,
                  let recordID = recordID,
@@ -74,8 +79,8 @@ extension Budget {
         self.balance = balance
         self.budgetAmount = budgetAmount
         self.budgetType = budgetType
-        self.recordID = cloudKitRecord.recordID
+        self.recordID = recordID
+        self.title = title
         self.isSharedBudget = isSharedBudget
     }
-    
 }
