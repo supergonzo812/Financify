@@ -1,17 +1,15 @@
 //
-//  LoginViewController.swift
+//  CategoryTableViewController.swift
 //  Financify
 //
-//  Created by Enrique Gongora on 5/25/20.
+//  Created by Enrique Gongora on 5/26/20.
 //  Copyright © 2020 Chris Gonzales. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class CategoryTableViewController: UITableViewController {
     
-    
-    // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,5 +24,15 @@ class LoginViewController: UIViewController {
             onboardingViewController.modalPresentationStyle = .fullScreen
             present(onboardingViewController, animated: true)
         }
+    }
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
 }
