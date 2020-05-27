@@ -27,7 +27,7 @@ class CoreDataStack {
     
     let container: NSPersistentCloudKitContainer = {
         
-        let container = NSPersistentCloudKitContainer(name: "FinancifyCoreData" as String)
+        let container = NSPersistentCloudKitContainer(name: "Financify" as String)
         container.loadPersistentStores() { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

@@ -8,15 +8,21 @@
 
 import Foundation
 import CloudKit
+import CoreData
 
 class BudgetController {
+    
+    
+    // MARK: - Properties
     
     var userController: UserController?
     var budgetController: BudgetController?
     var ckManager: CloudKitManager?
+    var expenseController: ExpenseController?
     
     var budgets: [Budget] = []
-    var expenses: [Expense] = []
+    
+    // MARK: Public Methods
     
     func fetchAllBudgetsFromCloudKit(completion: @escaping () -> Void) {
         guard let ckManager = ckManager else {
@@ -29,10 +35,9 @@ class BudgetController {
             }
             
             guard let records = records else { completion(); return }
+            
             let budgets = records.compactMap({ Budget(cloudKitRecord: $0) })
             
-            // need to check ownship of the budget, then save to CoreData
-            // Tasks project - verify if budgets already exist
             self.budgets = budgets
             
             completion()
@@ -45,21 +50,137 @@ class BudgetController {
         let predicate = NSPredicate(format: "budgetReference == %@", budgetReference)
         
         guard let expenseRecordIDs = budget.expenses?.allObjects.compactMap({ ($0 as? Expense)?.ckRecordID }) else {
-            completion()
-            return
+            completion(); return
         }
-        // check if expenses already exist, and if not add them to the budget (budget.add...)
+        
+        let predicate2 = NSPredicate(format: "NOT(recordID IN %@", expenseRecordIDs)
+        
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
+        predicate2])
+       
+        guard let ckManager = ckManager,
+        let expenseController = expenseController else {
+            completion(); return
+        }
+        ckManager.fetchRecordsOf(type: Expense.typeKey,
+                                 predicate: compoundPredicate,
+                                 database: CloudKitManager.database) { (expenses, error) in
+                                    if let error = error {
+                                        NSLog("Error fetching expenses from Cloudkit: \(error)")
+                                    }
+                                    
+                                    guard let fetchedExpenses = expenses else {
+                                        completion(); return
+                                    }
+                                    
+                                    let expenses = fetchedExpenses.compactMap( {Expense(record: $0)} )
+                                    
+                                    expenseController.expenses.append(contentsOf: expenses)
+        }
     }
     
-    func add(budgetWithTitle title: String, type: BudgeType, budgetAmount: Double, isShared: Bool, completion: @escaping () -> Void) {
+    func add(budgetWithTitle title: String, type: BudgeType, budgetAmount: Double, budgetType: String, balance: Double, recordID: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
+        guard let ckManager = ckManager else { return }
+        
+        let budget = Budget(balance: balance,
+                            budgetAmount: budgetAmount,
+                            budgetType: budgetType,
+                            isSharedBudget: isShared,
+                            recordID: recordID,
+                            title: title,
+                            user: user)
+        
+        ckManager.saveRecordToCloudKit(record: budget.cloudKitRecord,
+                                       database: CloudKitManager.database) { (record, error) in
+                                        if let error = error {
+                                            NSLog("Error saving budget to CloudKit: \(error.localizedDescription)")
+                                        } else {
+                                            self.budgets.append(budget)
+                                        }
+        }
     }
     
     func delete(budget: Budget) {
+        guard
+            let index = budgets.firstIndex(of: budget) else { return }
         
+        self.budgets.remove(at: index)
+        
+        CloudKitManager.database.delete(withRecordID: budget.ckRecordID) { (_, error) in
+            if let error = error {
+                NSLog("Error deleting budget from CloudKit: \(error.localizedDescription)")
+            }
+        }
+        CoreDataStack.shared.mainContext.delete(budget)
+        CoreDataStack.shared.save()
+    }
+    
+    func add(expense: Expense, toBudget budget: Budget) {
+        guard let expenseController = expenseController else { return }
+        expenseController.expenses.append(expense)
+        //use didSet on expense to save to CK
+    }
+
+    private func updateBudgets(with representations: [BudgetRepresentation]) throws {
+        
+        let budgetsWithID = representations.filter( { $0.recordID != nil})
+        let budgetIDsToFetch = budgetsWithID.compactMap { UUID(uuidString: $0.recordID!.uuidString) }
+        
+        let representationByID = Dictionary(uniqueKeysWithValues: zip(budgetIDsToFetch, budgetsWithID))
+        
+        var budgetsToCreate = representationByID
+        
+        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "recordID IN %@", budgetIDsToFetch)
+        
+        let context = CoreDataStack.shared.container.newBackgroundContext()
+        
+        context.performAndWait {
+            do{
+                let existingBudget = try context.fetch(fetchRequest)
+                
+                for budget in existingBudget {
+                    guard
+                        let id = budget.recordID,
+                        let representation = representationByID[id] else {
+                        continue
+                    }
+                    self.update(budget: budget, with: representation)
+                    
+                    budgetsToCreate.removeValue(forKey: id)
+                }
+                
+                for representation in budgetsToCreate.values {
+                    Budget(budgetRepresentation: representation,
+                           context: context)
+                }
+                
+            } catch {
+                NSLog("Error fetching budgets for UUIDs: \(error)")
+            }
+        }
+        
+        CoreDataStack.shared.save(context: context)
+    }
+    
+    private func update(budget: Budget, with budgetRepresentation: BudgetRepresentation) {
+        
+        guard
+            let balance = budgetRepresentation.balance,
+            let budgetAmount = budgetRepresentation.budgetAmount,
+            let budgetType = budgetRepresentation.budgetType,
+            let recordID = budgetRepresentation.recordID,
+            let title = budgetRepresentation.title else { return }
+        
+        budget.balance = balance
+        budget.budgetAmount = budgetAmount
+        budget.budgetType = budgetType
+        budget.isSharedBudget = budgetRepresentation.isSharedBudget
+        budget.recordID = recordID
+        budget.title = title
+
     }
     
 }
 
-
-// update relationship
