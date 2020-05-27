@@ -7,3 +7,21 @@
 //
 
 import Foundation
+import CloudKit
+
+class ExpenseController {
+    
+    var userController: UserController?
+       var budgetController: BudgetController?
+       var ckManager: CloudKitManager?
+       
+       var expenses: [Expense] = []
+       
+       func add(expensetWithDescriptoin description: String, amount: Double, completion: @escaping () -> Void) {
+           
+       }
+       
+       func delete(expense: Expense) {
+           
+       }
+}

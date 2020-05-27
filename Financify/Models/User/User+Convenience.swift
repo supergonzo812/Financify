@@ -12,6 +12,34 @@ import CloudKit
 
 extension User {
     
+    private static let typeKey = "User"
+    private static let firstNameKey = "firstName"
+    private static let fundsKey = "funds"
+    private static let lastName = "lastName"
+    private static let recordIDKey = "recordID"
+    
+    var cloudKitRecord: CKRecord {
+        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        let record = CKRecord(recordType: User.typeKey,
+                              recordID: CKRecord.ID(recordName: recordIDString,
+                                                    zoneID: ShareController.sharingZoneID))
+        record.setValue(self.firstName,
+                        forKey: User.firstNameKey)
+        record.setValue(self.funds,
+                        forKey: User.fundsKey)
+        record.setValue(self.lastName,
+                        forKey: User.lastName)
+        record.setValue(self.recordID,
+                        forKey: User.recordIDKey)
+        return record
+    }
+    
+    var ckRecordID: CKRecord.ID {
+        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        return CKRecord.ID(recordName: recordIDString,
+                           zoneID: ShareController.sharingZoneID)
+    }
+    
     @discardableResult convenience init(firstName: String,
                                         funds: Double,
                                         lastName: String,
@@ -47,7 +75,7 @@ extension User {
         self.init()
         guard
             let firstName = firstName,
-            let lasName = lastName,
+            let lastName = lastName,
             let recordID = recordID else {
                 return nil
         }

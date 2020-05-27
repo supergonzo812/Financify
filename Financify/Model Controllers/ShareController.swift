@@ -148,7 +148,7 @@ class ShareController: NSObject {
         
         group.notify(queue: DispatchQueue.main) {
             self.sharedBudgets = sharedBudgets.compactMap({
-                Budget(cloudKitRecord: $0, isSharedBudget: true)
+                Budget(cloudKitRecord: $0)
                 
             })
             completion()

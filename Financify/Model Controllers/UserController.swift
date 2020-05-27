@@ -9,21 +9,32 @@
 import Foundation
 import CloudKit
 
-class userController {
+class UserController {
     
-//    func createUserWith(firstName: String,
-//                funds: Double,
-//                lastName: String,
-//                ckManager: CloudKitManager,
-//                completion: @escaping () -> Void) {
-//        let user = User(firstName: firstName,
-//                        funds: funds,
-//                        lastName: lastName,
-//                        recordID: UUID())
-//
-//        ckManager.saveRecordToCloudKit(record: user.recordID,
-//                                       database: CloudKitManager.database)
-//
-//    }
+var budgetController: BudgetController?
+   var ckManager: CloudKitManager?
+   
+
+   func createUserWith(firstName: String,
+               funds: Double,
+               lastName: String,
+               ckManager: CloudKitManager,
+               completion: @escaping () -> Void) {
+       let user = User(firstName: firstName,
+                       funds: funds,
+                       lastName: lastName,
+                       recordID: UUID())
+       
+       ckManager.saveRecordToCloudKit(record: user.cloudKitRecord,
+                                      database: CloudKitManager.database) { (record, error) in
+                                       if let error = error {
+                                           print("Error saving user record to CloudKit: \(error.localizedDescription)")
+                                       } else {
+                                           ckManager.saveRecordToCloudKit(record: user.cloudKitRecord,
+                                                                          database: CloudKitManager.database)
+                                       }
+                                       completion()
+       }
+   }
     
 }

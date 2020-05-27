@@ -12,13 +12,7 @@ import CloudKit
 
 extension Budget {
     
-//    var ckRecordID: CKRecord.ID {
-//        if !recordID {
-//            recordID = CKRecord.ID(recordName: UUID().uuidString)
-//        }
-//    }
-    
-    private static let typeKey = "Budget"
+    static let typeKey = "Budget"
     private static let balanceKey = "balance"
     private static let budgetAmountKey = "budgetAmount"
     private static let budgetTypeKey = "budgetType"
@@ -46,12 +40,19 @@ extension Budget {
         return record
     }
     
+    var ckRecordID: CKRecord.ID {
+        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        return CKRecord.ID(recordName: recordIDString,
+                           zoneID: ShareController.sharingZoneID)
+    }
+    
     @discardableResult convenience init(balance: Double,
                                         budgetAmount: Double,
                                         budgetType: String,
                                         isSharedBudget: Bool,
                                         recordID: UUID,
                                         title: String,
+                                        user: User,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         
@@ -61,6 +62,7 @@ extension Budget {
         self.isSharedBudget = isSharedBudget
         self.recordID = recordID
         self.title = title
+        self.user = user
     }
     
     @discardableResult convenience init?(budgetRepresentation: BudgetRepresentation,
@@ -71,8 +73,9 @@ extension Budget {
             let budgetAmount = budgetRepresentation.budgetAmount,
             let budgetType = budgetRepresentation.budgetType,
             let recordID = budgetRepresentation.recordID,
-            let title = budgetRepresentation.title else {
-                return nil
+            let title = budgetRepresentation.title,
+            let user = user else {
+            return nil
         }
         
         self.init(balance: balance,
@@ -80,18 +83,18 @@ extension Budget {
                   budgetType: budgetType,
                   isSharedBudget: isSharedBudget,
                   recordID: recordID,
-                  title: title)
+                  title: title,
+                  user: user)
     }
     
-    @discardableResult convenience init?(cloudKitRecord: CKRecord,
-                                         isSharedBudget: Bool = false) {
+    @discardableResult convenience init?(cloudKitRecord: CKRecord) {
         self.init()
         guard
-                 let budgetType = budgetType,
-                 let recordID = recordID,
-                 let title = title else {
-                     return nil
-             }
+            let budgetType = budgetType,
+            let recordID = recordID,
+            let title = title else {
+                return nil
+        }
         
         self.balance = balance
         self.budgetAmount = budgetAmount
@@ -99,9 +102,11 @@ extension Budget {
         self.recordID = recordID
         self.title = title
         self.isSharedBudget = isSharedBudget
+        self.user = user
     }
 }
 
 func ==(lhs: Budget, rhs: Budget) -> Bool {
     return lhs.recordID == rhs.recordID
 }
+
