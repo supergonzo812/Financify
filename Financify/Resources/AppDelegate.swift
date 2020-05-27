@@ -14,22 +14,7 @@ import CloudKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // test if this will have an affect on the notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-             if let error = error {
-                 print("Error: \(error.localizedDescription)")
-             }
-             if granted {
-                 DispatchQueue.main.async {
-//                     self.onboardingPageViewController?.forwardPage()
-//                     self.updateUI()
-                    
-                    UIApplication.shared.registerForRemoteNotifications()
-                 }
-             }
-         }
-         UNUserNotificationCenter.current().delegate = self
-        
+        application.registerForRemoteNotifications()
         return true
     }
     
@@ -39,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
  
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
-        
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

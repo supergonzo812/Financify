@@ -31,9 +31,9 @@ class OnboardingViewController: UIViewController, OnboardingPageViewControllerDe
             case 0:
                 onboardingPageViewController?.forwardPage()
             case 1:
-                onboardingRequestNotification()
-            case 2:
                 onboardingPageViewController?.forwardPage()
+            case 2:
+                onboardingRequestNotification()
             case 3:
                 UserDefaults.standard.set(true, forKey: "hasViewedOnboarding")
                 dismiss(animated: true)
@@ -61,10 +61,10 @@ class OnboardingViewController: UIViewController, OnboardingPageViewControllerDe
                 nextButton.setTitle("Next", for: .normal)
                 skipButton.isHidden = false
             case 1:
-                nextButton.setTitle("Allow Notifications", for: .normal)
+                nextButton.setTitle("Next", for: .normal)
                 skipButton.isHidden = false
             case 2:
-                nextButton.setTitle("Next", for: .normal)
+                nextButton.setTitle("Allow Notifications", for: .normal)
             case 3:
                 nextButton.setTitle("Get started", for: .normal)
                 skipButton.isHidden = true
