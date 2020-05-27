@@ -16,9 +16,9 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     
     // MARK: - Properties
     weak var onboardingPageViewDelegate: OnboardingPageViewControllerDelegate?
-    var pageHeadings = ["Welcome to Financify", "Allow Notifications", "3rd Page", "You're all done!"]
-    var pageImages = ["Financify Onboarding Logo", "Notification", "Financify Onboarding Logo", "Financify Onboarding Logo"]
-    var pageSubHeadings = ["Financify is the best budgeting app. Making it easier and faster to manage your finances.", "Let us keep you up to date with your finances so you never miss a beat", "Filler Page", "Final Page"]
+    var pageHeadings = ["Welcome to Financify", "Automatic Updating", "Allow Notifications", "You're all done!"]
+    var pageImages = ["Financify Onboarding Logo", "iCloud Logo", "Notification", "You're All Done"]
+    var pageSubHeadings = ["We’ll help make it easier for you to keep track of your spendings and earnings.", "With iCloud, we'll update all your information with no work required on your part.", "Let us keep you up to date with your finances so you never miss a beat", "Setup is now complete. Let's take you to the app!"]
     var currentIndex = 0
     
     // MARK: - Methods
