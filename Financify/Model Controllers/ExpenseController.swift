@@ -11,10 +11,11 @@ import CloudKit
 
 class ExpenseController {
     
+    // MARK: - Properties
     var ckManager: CloudKitManager?
-    
     var expenses: [Expense] = []
     
+    // MARK: - Methods
     func add(expensetWithDescriptoin description: String, toBudget budget: Budget, amount: Double, id: UUID, user: User, completion: @escaping () -> Void) {
         
         guard let ckManager = ckManager else { return }
@@ -50,5 +51,13 @@ class ExpenseController {
         }
         CoreDataStack.shared.mainContext.delete(expense)
         CoreDataStack.shared.save()
+    }
+    
+    func totalExpenses(for expenses: [Expense]) -> Double {
+        var total: Double = 0
+        for expense in expenses{
+            total += expense.amount
+        }
+        return total
     }
 }

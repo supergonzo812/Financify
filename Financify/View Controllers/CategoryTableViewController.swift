@@ -13,10 +13,8 @@ class CategoryTableViewController: UITableViewController {
     // MARK: - Properties
     var cloudController = CloudKitManager()
     var userController = UserController()
-    var budgetController = BudgetController()
-    var shareController = ShareController()
-    
-    var budget = [Budget]()
+    var user: User?
+    var categoryArray: [String] = ["Expenses", "Bills", "Income", "Budget"]
     
     // MARK: - IBActions
     @IBAction func addUserTapped(_ sender: UIBarButtonItem) {
@@ -39,43 +37,22 @@ class CategoryTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Create New Budget", message: "Enter Budget Name, Type, & Amount", preferredStyle: .alert)
-        alert.addTextField()
-        alert.addTextField()
-        alert.addTextField()
-        
-        alert.textFields![0].placeholder = "Budget Name"
-        alert.textFields![1].placeholder = "Budget Type"
-        alert.textFields![2].placeholder = "Budget Amount"
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak self, weak alert] _ in
-            
-        }))
-        self.present(alert, animated: true)
-        
-    }
-    
     // MARK: - Methods
     func createUser(_ firstName: String, _ lastName: String, _ funds: Double) {
+        let id = UUID()
+        self.user = User(firstName: firstName, funds: funds, lastName: lastName, id: id)
         userController.createUserWith(firstName: firstName, funds: funds, lastName: lastName, ckManager: cloudController) {
             print("User created")
             return
         }
     }
     
-    func createBudget(_ budgetWithTitle: String, _ type: String, _ budgetAmount: Double) {
-        budgetController.add(budgetWithTitle: budgetWithTitle, type: type, budgetAmount: budgetAmount, budgetType: <#T##String#>, balance: 0.00, id: <#T##UUID#>, isShared: true, user: <#T##User#>) {
-            print("Budget Created")
-            return
+    func totalForAllBudgets(_ budgets: [Budget]) -> Double {
+        var total: Double = 0
+        for budget in budgets{
+            total += budget.budgetAmount
         }
-        // BudgetWithTitle - The Budget Name
-        // Type - ???
-        // BudgetAmount -
-        // BudgetType -
-        // Balance - $0
-        // 
+        return total
     }
     
     // MARK: - View LifeCycle
@@ -98,13 +75,13 @@ class CategoryTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return budgetController.budgets.count
+        return categoryArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") else { return UITableViewCell()}
-        cell.textLabel?.text = budgetController.budgets[indexPath.row].budgetType
-        cell.detailTextLabel?.text = "$\(budgetController.budgets[indexPath.row].balance)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        cell.textLabel?.text = categoryArray[indexPath.row]
+        cell.detailTextLabel?.text = "$0.00"
         return cell
     }
 }

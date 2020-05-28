@@ -10,6 +10,9 @@ import UIKit
 
 class DetailTableViewController: UITableViewController {
     
+    // MARK: - Properties
+    var expenseController = ExpenseController()
+    
     // MARK: - IBActions
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         showAlert()
