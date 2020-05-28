@@ -63,6 +63,7 @@ class BudgetController {
          else {
             completion(); return
         }
+        
         ckManager.fetchRecordsOf(type: Expense.typeKey,
                                  predicate: compoundPredicate,
                                  database: CloudKitManager.database) { (expenses, error) in
@@ -80,7 +81,7 @@ class BudgetController {
         }
     }
     
-    func add(budgetWithTitle title: String, type: BudgeType, budgetAmount: Double, budgetType: String, balance: Double, recordID: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
+    func add(budgetWithTitle title: String, type: String, budgetAmount: Double, budgetType: String, balance: Double, recordID: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
         guard let ckManager = ckManager else { return }
         
@@ -100,6 +101,7 @@ class BudgetController {
                                             self.budgets.append(budget)
                                         }
         }
+        CoreDataStack.shared.save()
     }
     
     func delete(budget: Budget) {
@@ -117,7 +119,6 @@ class BudgetController {
         CoreDataStack.shared.save()
     }
     
-
     private func updateBudgets(with representations: [BudgetRepresentation]) throws {
         
         let budgetsWithID = representations.filter( { $0.recordID != nil})
@@ -175,8 +176,6 @@ class BudgetController {
         budget.isSharedBudget = budgetRepresentation.isSharedBudget
         budget.recordID = recordID
         budget.title = title
-
     }
-    
 }
 
