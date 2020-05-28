@@ -33,7 +33,7 @@ class CategoryTableViewController: UITableViewController {
             guard let firstName = alert?.textFields?[0].text else { return }
             guard let lastName = alert?.textFields?[1].text else { return }
             guard let budget = alert?.textFields?[2].text, let totalBudget = Double(budget) else { return }
-            self!.createUser(firstName, lastName, totalBudget)
+            self?.createUser(firstName, lastName, totalBudget)
         }))
         self.present(alert, animated: true)
     }

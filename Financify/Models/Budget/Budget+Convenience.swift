@@ -17,7 +17,7 @@ extension Budget {
     private static let budgetAmountKey = "budgetAmount"
     private static let budgetTypeKey = "budgetType"
     private static let isSharedKey = "isSharedBudget"
-    private static let recordIDKey = "recordID"
+    private static let recordIDKey = "id"
     private static let titleKey = "title"
     
     

@@ -15,7 +15,7 @@ extension Expense {
     static let typeKey = "Expense"
     private static let amountKey = "amount"
     private static let expenseDescriptionKey = "expenseDescription"
-    private static let recordIDKey = "recordID"
+    private static let recordIDKey = "id"
     
     
     var cloudKitRecord: CKRecord {

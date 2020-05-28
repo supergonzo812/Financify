@@ -16,7 +16,7 @@ extension User {
     private static let firstNameKey = "firstName"
     private static let fundsKey = "funds"
     private static let lastName = "lastName"
-    private static let recordIDKey = "recordID"
+    private static let recordIDKey = "id"
     
     var cloudKitRecord: CKRecord {
         let recordIDString = id?.uuidString ?? UUID().uuidString
@@ -29,8 +29,6 @@ extension User {
                         forKey: User.fundsKey)
         record.setValue(self.lastName,
                         forKey: User.lastName)
-        record.setValue(self.id,
-                        forKey: User.recordIDKey)
         return record
     }
     
