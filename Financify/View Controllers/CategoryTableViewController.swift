@@ -15,10 +15,39 @@ class CategoryTableViewController: UITableViewController {
     var userController = UserController()
     var budgetController = BudgetController()
     
+    var user: User?
+    
     // MARK: - IBActions
+    @IBAction func addUserTapped(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Create New User", message: "Enter your first and last name and your budget total", preferredStyle: .alert)
+        alert.addTextField()
+        alert.addTextField()
+        alert.addTextField()
+        
+        alert.textFields![0].placeholder = "First Name"
+        alert.textFields![1].placeholder = "Last Name"
+        alert.textFields![2].placeholder = "Budget Total"
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak self, weak alert] _ in
+            guard let firstName = alert?.textFields?[0].text else { return }
+            guard let lastName = alert?.textFields?[1].text else { return }
+            guard let budget = alert?.textFields?[2].text, let totalBudget = Double(budget) else { return }
+            self!.createUser(firstName, lastName, totalBudget)
+        }))
+        self.present(alert, animated: true)
+    }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-//        budgetController.add(budgetWithTitle: <#T##String#>, type: <#T##BudgeType#>, budgetAmount: <#T##Double#>, budgetType: <#T##String#>, balance: <#T##Double#>, recordID: <#T##UUID#>, isShared: <#T##Bool#>, user: <#T##User#>, completion: <#T##() -> Void#>)
+        //        budgetController.add(budgetWithTitle: <#T##String#>, type: <#T##BudgeType#>, budgetAmount: <#T##Double#>, budgetType: <#T##String#>, balance: <#T##Double#>, recordID: <#T##UUID#>, isShared: <#T##Bool#>, user: <#T##User#>, completion: <#T##() -> Void#>)
+    }
+    
+    // MARK: - Methods
+    func createUser(_ firstName: String, _ lastName: String, _ funds: Double) {
+        userController.createUserWith(firstName: firstName, funds: funds, lastName: lastName, ckManager: cloudController) {
+            print("Success")
+            return
+        }
     }
     
     // MARK: - View LifeCycle

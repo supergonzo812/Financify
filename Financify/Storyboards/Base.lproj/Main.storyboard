@@ -49,6 +49,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="v2h-Id-aqw">
+                        <barButtonItem key="leftBarButtonItem" title="Add User" id="62i-Qs-sip">
+                            <connections>
+                                <action selector="addUserTapped:" destination="4fw-nN-OaX" id="tdV-aR-peY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NOj-D1-H7G">
                             <connections>
                                 <action selector="addButtonTapped:" destination="4fw-nN-OaX" id="7bO-aN-XNz"/>
