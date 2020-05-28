@@ -18,7 +18,8 @@ class BudgetController {
     var userController: UserController?
     var budgetController: BudgetController?
     var ckManager: CloudKitManager?
-    var expenseController: ExpenseController?
+    var expenseController = ExpenseController()
+    // should expenseController be an instance or optional passed in by the VC.
     
     var budgets: [Budget] = []
     
@@ -58,8 +59,8 @@ class BudgetController {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
         predicate2])
        
-        guard let ckManager = ckManager,
-        let expenseController = expenseController else {
+        guard let ckManager = ckManager
+         else {
             completion(); return
         }
         ckManager.fetchRecordsOf(type: Expense.typeKey,
@@ -75,7 +76,7 @@ class BudgetController {
                                     
                                     let expenses = fetchedExpenses.compactMap( {Expense(record: $0)} )
                                     
-                                    expenseController.expenses.append(contentsOf: expenses)
+                                    self.expenseController.expenses.append(contentsOf: expenses)
         }
     }
     
@@ -116,11 +117,6 @@ class BudgetController {
         CoreDataStack.shared.save()
     }
     
-    func add(expense: Expense, toBudget budget: Budget) {
-        guard let expenseController = expenseController else { return }
-        expenseController.expenses.append(expense)
-        //use didSet on expense to save to CK
-    }
 
     private func updateBudgets(with representations: [BudgetRepresentation]) throws {
         
