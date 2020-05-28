@@ -16,7 +16,7 @@ class CategoryTableViewController: UITableViewController {
     var budgetController = BudgetController()
     var shareController = ShareController()
     
-    var user: User?
+    var budget = [Budget]()
     
     // MARK: - IBActions
     @IBAction func addUserTapped(_ sender: UIBarButtonItem) {
@@ -40,20 +40,48 @@ class CategoryTableViewController: UITableViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        //        budgetController.add(budgetWithTitle: <#T##String#>, type: <#T##BudgeType#>, budgetAmount: <#T##Double#>, budgetType: <#T##String#>, balance: <#T##Double#>, recordID: <#T##UUID#>, isShared: <#T##Bool#>, user: <#T##User#>, completion: <#T##() -> Void#>)
+        let alert = UIAlertController(title: "Create New Budget", message: "Enter Budget Name, Type, & Amount", preferredStyle: .alert)
+        alert.addTextField()
+        alert.addTextField()
+        alert.addTextField()
+        
+        alert.textFields![0].placeholder = "Budget Name"
+        alert.textFields![1].placeholder = "Budget Type"
+        alert.textFields![2].placeholder = "Budget Amount"
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak self, weak alert] _ in
+            
+        }))
+        self.present(alert, animated: true)
+        
     }
     
     // MARK: - Methods
     func createUser(_ firstName: String, _ lastName: String, _ funds: Double) {
         userController.createUserWith(firstName: firstName, funds: funds, lastName: lastName, ckManager: cloudController) {
-            print("Success")
+            print("User created")
             return
         }
+    }
+    
+    func createBudget(_ budgetWithTitle: String, _ type: String, _ budgetAmount: Double) {
+        budgetController.add(budgetWithTitle: budgetWithTitle, type: type, budgetAmount: budgetAmount, budgetType: <#T##String#>, balance: 0.00, id: <#T##UUID#>, isShared: true, user: <#T##User#>) {
+            print("Budget Created")
+            return
+        }
+        // BudgetWithTitle - The Budget Name
+        // Type - ???
+        // BudgetAmount -
+        // BudgetType -
+        // Balance - $0
+        // 
     }
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
