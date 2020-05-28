@@ -15,8 +15,7 @@ class ExpenseController {
     var ckManager: CloudKitManager?
     var expenses: [Expense] = []
     
-    // MARK: - Methods
-    func add(expensetWithDescriptoin description: String, toBudget budget: Budget, amount: Double, id: UUID, user: User, completion: @escaping () -> Void) {
+    func add(expenseWithDescription description: String, toBudget budget: Budget, amount: Double, id: UUID, user: User, completion: @escaping () -> Void) {
         
         guard let ckManager = ckManager else { return }
         
