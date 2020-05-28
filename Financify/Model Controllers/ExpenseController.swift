@@ -33,10 +33,9 @@ class ExpenseController {
                                             self.expenses.append(newExpense)
                                         }
         }
-        
         expenses.append(newExpense)
+        CoreDataStack.shared.save()
     }
-    
     
     func delete(expense: Expense) {
         guard
