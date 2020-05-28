@@ -26,7 +26,7 @@ class BudgetController {
      Fetches all the records for 'Budget.typeKey', and sets the returning values to the 'budgets' object on the 'BudgetController' as an array of 'Budget' objects.
      
      - Returns:
-        - completion: A completion handler which takes no arguments and returns a Void type.
+     - completion: A completion handler which takes no arguments and returns a Void type.
      */
     func fetchAllBudgetsFromCloudKit(completion: @escaping () -> Void) {
         guard let ckManager = ckManager else {
@@ -51,8 +51,8 @@ class BudgetController {
      Fetches all the records for 'Expense.typeKey' on the passed in budget, and sets the returning values to the 'expenses' object on the 'ExpenseViewController' as an array of 'Expense' objects.
      
      - Parameters:
-        - budget: A 'Budget' object
-        - completion: A completion handler which takes no arguments and returns a Void type.
+     - budget: A 'Budget' object
+     - completion: A completion handler which takes no arguments and returns a Void type.
      */
     func fetchExpensesFrom(budget: Budget, completion: @escaping () -> Void) {
         let budgetReference = CKRecord.Reference(recordID: budget.cloudKitRecord.recordID,
@@ -66,11 +66,11 @@ class BudgetController {
         let predicate2 = NSPredicate(format: "NOT(recordID IN %@", expenseRecordIDs)
         
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
-        predicate2])
-       
+                                                                                    predicate2])
+        
         guard let ckManager = ckManager
-         else {
-            completion(); return
+            else {
+                completion(); return
         }
         
         ckManager.fetchRecordsOf(type: Expense.typeKey,
@@ -90,19 +90,19 @@ class BudgetController {
         }
     }
     /**
-     Creates a new 'Budget' objects with the provided parameters.  Then saves the new 'Budget' object to CloudKit as well as CoreData.  Then appends the new 'Budget' object to the 'budgets' array on the 'BudgetController'.
+     Creates a new 'Budget' object with the provided parameters.  Then saves the new 'Budget' object to CloudKit as well as CoreData, and appends the new 'Budget' object to the 'budgets' array on the 'BudgetController'.
      
      - Parameters:
-        - budgetWithTitle:  A String value describing the budget.
-        - budgetType: A String value which describes the classification of the budget (i.e. utilities, insurance)
-        - budgetAmount: A Double value representing the dollar amount allocated to this budget.
-        - balance:  A Double value representing the remaining balance.
-        - id:  A UUID value representing the budget identifier.
-        - isShared
-        - user: A User object which represents the individual creating the budget.
+     - budgetWithTitle:  A String value describing the budget.
+     - budgetType: A String value which describes the classification of the budget (i.e. utilities, insurance)
+     - budgetAmount: A Double value representing the dollar amount allocated to this budget.
+     - balance:  A Double value representing the remaining balance.
+     - id:  A UUID value representing the budget identifier.
+     - isShared
+     - user: A User object which represents the individual creating the budget.
      
      - Returns:
-     completion: A completion handler which takes no arguments and returns a Void type.
+     - completion: A completion handler which takes no arguments and returns a Void type.
      */
     func add(budgetWithTitle title: String, budgetType: String, budgetAmount: Double, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
@@ -128,7 +128,7 @@ class BudgetController {
         CoreDataStack.shared.save()
     }
     /**
-      Verifies the passed 'Budget' object exists in the 'budgets' array then deletes the passed in object from CloudKit, from CoreDate, and from the 'budgets' array.
+     Verifies the passed 'Budget' object exists in the 'budgets' array then deletes the passed in object from CloudKit, from CoreDate, and from the 'budgets' array.
      
      - Parameters:
      - budget: A Budget object.
@@ -145,6 +145,14 @@ class BudgetController {
         CoreDataStack.shared.mainContext.delete(budget)
         CoreDataStack.shared.save()
         self.budgets.remove(at: index)
+    }
+    
+    func totalForAllBudgets(_ budgets: [Budget]) -> Double {
+        var total: Double = 0
+        for budget in budgets{
+            total += budget.budgetAmount
+        }
+        return total
     }
     
     // MARK: - Private Methods
@@ -171,7 +179,7 @@ class BudgetController {
                     guard
                         let id = budget.id,
                         let representation = representationByID[id] else {
-                        continue
+                            continue
                     }
                     self.update(budget: budget, with: representation)
                     
