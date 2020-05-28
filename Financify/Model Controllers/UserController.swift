@@ -29,12 +29,10 @@ var budgetController: BudgetController?
                                       database: CloudKitManager.database) { (record, error) in
                                        if let error = error {
                                            print("Error saving user record to CloudKit: \(error.localizedDescription)")
-                                       } else {
-                                           ckManager.saveRecordToCloudKit(record: user.cloudKitRecord,
-                                                                          database: CloudKitManager.database)
-                                       }
+                                       } 
                                        completion()
        }
+    CoreDataStack.shared.save()
    }
     
 }

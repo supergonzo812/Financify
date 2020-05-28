@@ -14,6 +14,7 @@ class CategoryTableViewController: UITableViewController {
     var cloudController = CloudKitManager()
     var userController = UserController()
     var budgetController = BudgetController()
+    var shareController = ShareController()
     
     var user: User?
     

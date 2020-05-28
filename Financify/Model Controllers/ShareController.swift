@@ -17,8 +17,6 @@ class ShareController: NSObject {
         return CKRecordZone.ID(zoneName: "ShareZone", ownerName: CKCurrentUserDefaultName)
     }()
     
-    
-    
     private var userToSave: User?
     private var budgetToSave: Budget?
     private var expenseToSave: Expense?
@@ -90,8 +88,6 @@ class ShareController: NSObject {
     
     func createShareZone() {
         
-        guard !UserDefaults.standard.bool(forKey: "sharingZoneHasBeenCreated") else { return }
-        
         let shareZone = CKRecordZone(zoneID: ShareController.sharingZoneID)
         
         let modifyZoneOperation = CKModifyRecordZonesOperation(recordZonesToSave: [shareZone], recordZoneIDsToDelete: nil)
@@ -101,8 +97,7 @@ class ShareController: NSObject {
             if let error = error {
                 NSLog("Error creating sharing zone: \(error)")
             }
-            
-            UserDefaults.standard.set(true, forKey: "sharingZoneHasBeenCreated")
+        
         }
         
         CKContainer.default().privateCloudDatabase.add(modifyZoneOperation)

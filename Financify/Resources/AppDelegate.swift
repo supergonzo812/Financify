@@ -35,12 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         subscription.notificationInfo = info
         
-        CKContainer.default().publicCloudDatabase.save(subscription) { (subscription, error) in
-            if error != nil {
-                NSLog("Error: \(error)")
-                return
-            }
-        }
+//        CKContainer.default().publicCloudDatabase.save(subscription) { (subscription, error) in
+//            if error != nil {
+//                NSLog("Error: \(error)")
+//                return
+//            }
+//        }
     }
     
     // MARK: UISceneSession Lifecycle
