@@ -81,7 +81,7 @@ class BudgetController {
         }
     }
     
-    func add(budgetWithTitle title: String, type: String, budgetAmount: Double, budgetType: String, balance: Double, recordID: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
+    func add(budgetWithTitle title: String, type: String, budgetAmount: Double, budgetType: String, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
         guard let ckManager = ckManager else { return }
         
@@ -89,7 +89,7 @@ class BudgetController {
                             budgetAmount: budgetAmount,
                             budgetType: budgetType,
                             isSharedBudget: isShared,
-                            recordID: recordID,
+                            id: id,
                             title: title,
                             user: user)
         
@@ -121,8 +121,8 @@ class BudgetController {
     
     private func updateBudgets(with representations: [BudgetRepresentation]) throws {
         
-        let budgetsWithID = representations.filter( { $0.recordID != nil})
-        let budgetIDsToFetch = budgetsWithID.compactMap { UUID(uuidString: $0.recordID!.uuidString) }
+        let budgetsWithID = representations.filter( { $0.id != nil})
+        let budgetIDsToFetch = budgetsWithID.compactMap { UUID(uuidString: $0.id!.uuidString) }
         
         let representationByID = Dictionary(uniqueKeysWithValues: zip(budgetIDsToFetch, budgetsWithID))
         
@@ -139,7 +139,7 @@ class BudgetController {
                 
                 for budget in existingBudget {
                     guard
-                        let id = budget.recordID,
+                        let id = budget.id,
                         let representation = representationByID[id] else {
                         continue
                     }
@@ -167,14 +167,14 @@ class BudgetController {
             let balance = budgetRepresentation.balance,
             let budgetAmount = budgetRepresentation.budgetAmount,
             let budgetType = budgetRepresentation.budgetType,
-            let recordID = budgetRepresentation.recordID,
+            let id = budgetRepresentation.id,
             let title = budgetRepresentation.title else { return }
         
         budget.balance = balance
         budget.budgetAmount = budgetAmount
         budget.budgetType = budgetType
         budget.isSharedBudget = budgetRepresentation.isSharedBudget
-        budget.recordID = recordID
+        budget.id = id
         budget.title = title
     }
 }

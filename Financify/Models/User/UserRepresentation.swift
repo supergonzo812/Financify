@@ -12,5 +12,5 @@ struct UserRepresentation: Codable {
     var firstName: String?
     var funds: Double?
     var lastName: String?
-    var recordID: UUID?
+    var id: UUID?
 }

@@ -13,6 +13,6 @@ struct BudgetRepresentation: Codable {
     var budgetAmount: Double?
     var budgetType: String?
     var isSharedBudget: Bool
-    var recordID: UUID?
+    var id: UUID?
     var title: String?
 }

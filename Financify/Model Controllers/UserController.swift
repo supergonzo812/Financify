@@ -23,7 +23,7 @@ var budgetController: BudgetController?
        let user = User(firstName: firstName,
                        funds: funds,
                        lastName: lastName,
-                       recordID: UUID())
+                       id: UUID())
        
        ckManager.saveRecordToCloudKit(record: user.cloudKitRecord,
                                       database: CloudKitManager.database) { (record, error) in

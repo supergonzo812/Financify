@@ -11,5 +11,5 @@ import Foundation
 struct ExpenseRepresentation: Codable {
     var amount: Double?
     var expenseDescription: String?
-    var recordID: UUID?
+    var id: UUID?
 }

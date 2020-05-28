@@ -19,27 +19,27 @@ extension Expense {
     
     
     var cloudKitRecord: CKRecord {
-        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        let recordIDString = id?.uuidString ?? UUID().uuidString
         let record = CKRecord(recordType: Budget.typeKey, recordID: CKRecord.ID(recordName: recordIDString,
                                                                                 zoneID: ShareController.sharingZoneID))
         record.setValue(self.amount,
                         forKey: Expense.amountKey)
         record.setValue(self.expenseDescription,
                         forKey: Expense.expenseDescriptionKey)
-        record.setValue(self.recordID,
+        record.setValue(self.id,
                         forKey: Expense.recordIDKey)
         return record
     }
     
     var ckRecordID: CKRecord.ID {
-        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        let recordIDString = id?.uuidString ?? UUID().uuidString
         return CKRecord.ID(recordName: recordIDString,
                            zoneID: ShareController.sharingZoneID)
     }
     
     @discardableResult convenience init(amount: Double,
                                         expenseDescription: String,
-                                        recordID: UUID,
+                                        id: UUID,
                                         budget: Budget,
                                         user: User,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
@@ -47,7 +47,7 @@ extension Expense {
         
         self.amount = amount
         self.expenseDescription = expenseDescription
-        self.recordID = recordID
+        self.id = id
         self.budget = budget
         self.user = user
     }
@@ -59,13 +59,13 @@ extension Expense {
         guard
             let amount = expenseRepresentation.amount,
             let expenseDescription = expenseRepresentation.expenseDescription,
-            let recordID = expenseRepresentation.recordID else {
+            let id = expenseRepresentation.id else {
                 return nil
         }
         
         self.init(amount: amount,
                   expenseDescription: expenseDescription,
-                  recordID: recordID,
+                  id: id,
                   budget: budget,
                   user: user)
     }
@@ -78,13 +78,13 @@ extension Expense {
         self.init()
         guard
             let expenseDescription = expenseDescription,
-            let recordID = recordID else {
+            let id = id else {
                 return nil
         }
         
         self.amount = amount
         self.expenseDescription = expenseDescription
-        self.recordID = recordID
+        self.id = id
         self.budget = budget
         self.user = user
     }
@@ -94,12 +94,12 @@ extension Expense {
         guard
             let amount = record[Expense.amountKey] as? Double,
             let expenseDescription = record[Expense.expenseDescriptionKey] as? String,
-            let recordID = record[Expense.recordIDKey] as? UUID else {
+            let id = record[Expense.recordIDKey] as? UUID else {
                 return nil
         }
         
         self.amount = amount
         self.expenseDescription = expenseDescription
-        self.recordID = recordID
+        self.id = id
     }
 }

@@ -15,13 +15,13 @@ class ExpenseController {
     
     var expenses: [Expense] = []
     
-    func add(expensetWithDescriptoin description: String, toBudget budget: Budget, amount: Double, recordID: UUID, user: User, completion: @escaping () -> Void) {
+    func add(expensetWithDescriptoin description: String, toBudget budget: Budget, amount: Double, id: UUID, user: User, completion: @escaping () -> Void) {
         
         guard let ckManager = ckManager else { return }
         
         let newExpense = Expense(amount: amount,
                                  expenseDescription: description,
-                                 recordID: recordID,
+                                 id: id,
                                  budget: budget,
                                  user: user)
         

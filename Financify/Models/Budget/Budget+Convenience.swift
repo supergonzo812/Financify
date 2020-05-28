@@ -22,8 +22,8 @@ extension Budget {
     
     
     var cloudKitRecord: CKRecord {
-        let recordIDString = recordID?.uuidString ?? UUID().uuidString
-        let record = CKRecord(recordType: Budget.typeKey, recordID: CKRecord.ID(recordName: recordIDString,
+        let idString = id?.uuidString ?? UUID().uuidString
+        let record = CKRecord(recordType: Budget.typeKey, recordID: CKRecord.ID(recordName: idString,
                                                                                 zoneID: ShareController.sharingZoneID))
         record.setValue(self.balance,
                         forKey: Budget.balanceKey)
@@ -33,7 +33,7 @@ extension Budget {
                         forKey: Budget.budgetTypeKey)
         record.setValue(self.isSharedBudget,
                         forKey: Budget.isSharedKey)
-        record.setValue(self.recordID,
+        record.setValue(self.id,
                         forKey: Budget.recordIDKey)
         record.setValue(self.title,
                         forKey: Budget.titleKey)
@@ -41,7 +41,7 @@ extension Budget {
     }
     
     var ckRecordID: CKRecord.ID {
-        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        let recordIDString = id?.uuidString ?? UUID().uuidString
         return CKRecord.ID(recordName: recordIDString,
                            zoneID: ShareController.sharingZoneID)
     }
@@ -50,7 +50,7 @@ extension Budget {
                                         budgetAmount: Double,
                                         budgetType: String,
                                         isSharedBudget: Bool,
-                                        recordID: UUID,
+                                        id: UUID,
                                         title: String,
                                         user: User,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
@@ -60,7 +60,7 @@ extension Budget {
         self.budgetAmount = budgetAmount
         self.budgetType = budgetType
         self.isSharedBudget = isSharedBudget
-        self.recordID = recordID
+        self.id = id
         self.title = title
         self.user = user
     }
@@ -72,7 +72,7 @@ extension Budget {
             let balance = budgetRepresentation.balance,
             let budgetAmount = budgetRepresentation.budgetAmount,
             let budgetType = budgetRepresentation.budgetType,
-            let recordID = budgetRepresentation.recordID,
+            let id = budgetRepresentation.id,
             let title = budgetRepresentation.title,
             let user = user else {
             return nil
@@ -82,7 +82,7 @@ extension Budget {
                   budgetAmount: budgetAmount,
                   budgetType: budgetType,
                   isSharedBudget: isSharedBudget,
-                  recordID: recordID,
+                  id: id,
                   title: title,
                   user: user)
     }
@@ -91,7 +91,7 @@ extension Budget {
         self.init()
         guard
             let budgetType = budgetType,
-            let recordID = recordID,
+            let id = id,
             let title = title else {
                 return nil
         }
@@ -99,7 +99,7 @@ extension Budget {
         self.balance = balance
         self.budgetAmount = budgetAmount
         self.budgetType = budgetType
-        self.recordID = recordID
+        self.id = id
         self.title = title
         self.isSharedBudget = isSharedBudget
         self.user = user
@@ -107,6 +107,6 @@ extension Budget {
 }
 
 func ==(lhs: Budget, rhs: Budget) -> Bool {
-    return lhs.recordID == rhs.recordID
+    return lhs.id == rhs.id
 }
 

@@ -19,7 +19,7 @@ extension User {
     private static let recordIDKey = "recordID"
     
     var cloudKitRecord: CKRecord {
-        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        let recordIDString = id?.uuidString ?? UUID().uuidString
         let record = CKRecord(recordType: User.typeKey,
                               recordID: CKRecord.ID(recordName: recordIDString,
                                                     zoneID: ShareController.sharingZoneID))
@@ -29,13 +29,13 @@ extension User {
                         forKey: User.fundsKey)
         record.setValue(self.lastName,
                         forKey: User.lastName)
-        record.setValue(self.recordID,
+        record.setValue(self.id,
                         forKey: User.recordIDKey)
         return record
     }
     
     var ckRecordID: CKRecord.ID {
-        let recordIDString = recordID?.uuidString ?? UUID().uuidString
+        let recordIDString = id?.uuidString ?? UUID().uuidString
         return CKRecord.ID(recordName: recordIDString,
                            zoneID: ShareController.sharingZoneID)
     }
@@ -43,14 +43,14 @@ extension User {
     @discardableResult convenience init(firstName: String,
                                         funds: Double,
                                         lastName: String,
-                                        recordID: UUID,
+                                        id: UUID,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         
         self.firstName = firstName
         self.funds = funds
         self.lastName = lastName
-        self.recordID = recordID
+        self.id = id
     }
     
     @discardableResult convenience init?(userRepresentation: UserRepresentation,
@@ -59,7 +59,7 @@ extension User {
             let firstName = userRepresentation.firstName,
             let funds = userRepresentation.funds,
             let lastName = userRepresentation.lastName,
-            let recordID = userRepresentation.recordID
+            let id = userRepresentation.id
             else {
                 return nil
         }
@@ -67,7 +67,7 @@ extension User {
         self.init(firstName: firstName,
                   funds: funds,
                   lastName: lastName,
-                  recordID: recordID)
+                  id: id)
     }
     
     @discardableResult convenience init?(cloudKitRecord: CKRecord, isSharedBudget: Bool = false) {
@@ -76,13 +76,13 @@ extension User {
         guard
             let firstName = firstName,
             let lastName = lastName,
-            let recordID = recordID else {
+            let id = id else {
                 return nil
         }
         
         self.firstName = firstName
         self.funds = funds
         self.lastName = lastName
-        self.recordID = recordID
+        self.id = id
     }
 }
