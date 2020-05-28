@@ -12,19 +12,22 @@ import CoreData
 
 class BudgetController {
     
-    
     // MARK: - Properties
     
     var userController: UserController?
     var budgetController: BudgetController?
     var ckManager: CloudKitManager?
     var expenseController = ExpenseController()
-    // should expenseController be an instance or optional passed in by the VC.
-    
+    /// The array of budgets for a single user.
     var budgets: [Budget] = []
     
     // MARK: Public Methods
-    
+    /**
+     Fetches all the records for 'Budget.typeKey', and sets the returning values to the 'budgets' object on the 'BudgetController' as an array of 'Budget' objects.
+     
+     - Returns:
+        - completion: A completion handler which takes no arguments and returns a Void type.
+     */
     func fetchAllBudgetsFromCloudKit(completion: @escaping () -> Void) {
         guard let ckManager = ckManager else {
             completion()
@@ -44,7 +47,13 @@ class BudgetController {
             completion()
         }
     }
-    
+    /**
+     Fetches all the records for 'Expense.typeKey' on the passed in budget, and sets the returning values to the 'expenses' object on the 'ExpenseViewController' as an array of 'Expense' objects.
+     
+     - Parameters:
+        - budget: A 'Budget' object
+        - completion: A completion handler which takes no arguments and returns a Void type.
+     */
     func fetchExpensesFrom(budget: Budget, completion: @escaping () -> Void) {
         let budgetReference = CKRecord.Reference(recordID: budget.cloudKitRecord.recordID,
                                                  action: .deleteSelf)
@@ -80,8 +89,22 @@ class BudgetController {
                                     self.expenseController.expenses.append(contentsOf: expenses)
         }
     }
-    
-    func add(budgetWithTitle title: String, type: String, budgetAmount: Double, budgetType: String, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
+    /**
+     Creates a new 'Budget' objects with the provided parameters.  Then saves the new 'Budget' object to CloudKit as well as CoreData.  Then appends the new 'Budget' object to the 'budgets' array on the 'BudgetController'.
+     
+     - Parameters:
+        - budgetWithTitle:  A String value describing the budget.
+        - budgetType: A String value which describes the classification of the budget (i.e. utilities, insurance)
+        - budgetAmount: A Double value representing the dollar amount allocated to this budget.
+        - balance:  A Double value representing the remaining balance.
+        - id:  A UUID value representing the budget identifier.
+        - isShared
+        - user: A User object which represents the individual creating the budget.
+     
+     - Returns:
+     completion: A completion handler which takes no arguments and returns a Void type.
+     */
+    func add(budgetWithTitle title: String, budgetType: String, budgetAmount: Double, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
         guard let ckManager = ckManager else { return }
         
@@ -101,14 +124,18 @@ class BudgetController {
                                             self.budgets.append(budget)
                                         }
         }
+        budgets.append(budget)
         CoreDataStack.shared.save()
     }
-    
+    /**
+      Verifies the passed 'Budget' object exists in the 'budgets' array then deletes the passed in object from CloudKit, from CoreDate, and from the 'budgets' array.
+     
+     - Parameters:
+     - budget: A Budget object.
+     */
     func delete(budget: Budget) {
         guard
             let index = budgets.firstIndex(of: budget) else { return }
-        
-        self.budgets.remove(at: index)
         
         CloudKitManager.database.delete(withRecordID: budget.ckRecordID) { (_, error) in
             if let error = error {
@@ -117,7 +144,10 @@ class BudgetController {
         }
         CoreDataStack.shared.mainContext.delete(budget)
         CoreDataStack.shared.save()
+        self.budgets.remove(at: index)
     }
+    
+    // MARK: - Private Methods
     
     private func updateBudgets(with representations: [BudgetRepresentation]) throws {
         
