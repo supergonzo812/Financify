@@ -70,6 +70,7 @@ class DetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
         cell.textLabel?.text = expenseController.expenses[indexPath.row].expenseDescription
+        cell.detailTextLabel?.text = "$\(expenseController.expenses[indexPath.row].amount)"
         return cell
     }
 }
