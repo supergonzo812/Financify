@@ -22,7 +22,7 @@ class CategoryTableViewController: UITableViewController {
     var budgetController = BudgetController()
     
     // MARK: - IBActions
-    
+    // change to set user once, then adjust total funds after
     @IBAction func addUserTapped(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Create New User", message: "Enter your first and last name and your budget total", preferredStyle: .alert)
         alert.addTextField()
@@ -146,6 +146,7 @@ class CategoryTableViewController: UITableViewController {
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        budgetController.fetchAllBudgetsFromCloudKit { }
         tableView.reloadData()
     }
     
@@ -203,3 +204,4 @@ class CategoryTableViewController: UITableViewController {
         vc?.budget = budgetController.budgets[indexPath.row]
     }
 }
+

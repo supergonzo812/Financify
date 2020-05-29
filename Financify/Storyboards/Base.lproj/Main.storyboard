@@ -49,7 +49,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="v2h-Id-aqw">
-                        <barButtonItem key="leftBarButtonItem" title="Add User" id="62i-Qs-sip">
+                        <barButtonItem key="leftBarButtonItem" title="Funds Available" id="62i-Qs-sip">
                             <connections>
                                 <action selector="addUserTapped:" destination="4fw-nN-OaX" id="tdV-aR-peY"/>
                             </connections>
