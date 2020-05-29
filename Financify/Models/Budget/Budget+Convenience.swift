@@ -45,8 +45,9 @@ extension Budget {
         return CKRecord.ID(recordName: recordIDString,
                            zoneID: ShareController.sharingZoneID)
     }
+    /// TODO:  Create initialize which sets the starting balance to the budgetAmount.
     
-    @discardableResult convenience init(balance: Double,
+    @discardableResult convenience init(balance: Double ,
                                         budgetAmount: Double,
                                         budgetType: String,
                                         isSharedBudget: Bool,

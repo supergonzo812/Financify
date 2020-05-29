@@ -51,8 +51,8 @@ class BudgetController {
      Fetches all the records for 'Expense.typeKey' on the passed in budget, and sets the returning values to the 'expenses' object on the 'ExpenseViewController' as an array of 'Expense' objects.
      
      - Parameters:
-     - budget: A 'Budget' object
-     - completion: A completion handler which takes no arguments and returns a Void type.
+     -budget: A 'Budget' object
+     -completion: A completion handler which takes no arguments and returns a Void type.
      */
     func fetchExpensesFrom(budget: Budget, completion: @escaping () -> Void) {
         let budgetReference = CKRecord.Reference(recordID: budget.cloudKitRecord.recordID,
@@ -93,16 +93,16 @@ class BudgetController {
      Creates a new 'Budget' object with the provided parameters.  Then saves the new 'Budget' object to CloudKit as well as CoreData, and appends the new 'Budget' object to the 'budgets' array on the 'BudgetController'.
      
      - Parameters:
-     - budgetWithTitle:  A String value describing the budget.
-     - budgetType: A String value which describes the classification of the budget (i.e. utilities, insurance)
-     - budgetAmount: A Double value representing the dollar amount allocated to this budget.
-     - balance:  A Double value representing the remaining balance.
-     - id:  A UUID value representing the budget identifier.
-     - isShared
-     - user: A User object which represents the individual creating the budget.
+     - Parameter budgetWithTitle:  A String value describing the budget.
+     - Parameter budgetType: A String value which describes the classification of the budget (i.e. utilities, insurance)
+     - Parameter budgetAmount: A Double value representing the dollar amount allocated to this budget.
+     - Parameter balance:  A Double value representing the remaining balance.
+     - Parameter id:  A UUID value representing the budget identifier.
+     - Parameter isShared:  A Bool indicating if the created budget is shared.
+     - Parameter user: A User object which represents the individual creating the budget.
      
      - Returns:
-     - completion: A completion handler which takes no arguments and returns a Void type.
+        completion: A completion handler which takes no arguments and returns a Void type.
      */
     func add(budgetWithTitle title: String, budgetType: String, budgetAmount: Double, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
@@ -146,7 +146,10 @@ class BudgetController {
         CoreDataStack.shared.save()
         self.budgets.remove(at: index)
     }
-    
+    /**
+     Returns the sum of the 'budget.budgetAmount' values for the passed in 'Budget' object.
+     
+     */
     func totalForAllBudgets(_ budgets: [Budget]) -> Double {
         var total: Double = 0
         for budget in budgets{
