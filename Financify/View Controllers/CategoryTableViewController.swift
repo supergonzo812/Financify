@@ -14,8 +14,6 @@ class CategoryTableViewController: UITableViewController {
     var cloudController = CloudKitManager()
     var userController = UserController()
     var budgetController = BudgetController()
-    var shareController = ShareController()
-    
     var user: User?
     
     // MARK: - IBActions
@@ -28,6 +26,7 @@ class CategoryTableViewController: UITableViewController {
         alert.textFields![0].placeholder = "First Name"
         alert.textFields![1].placeholder = "Last Name"
         alert.textFields![2].placeholder = "Budget Total"
+        alert.textFields![2].keyboardType = .decimalPad
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak self, weak alert] _ in
@@ -39,21 +38,58 @@ class CategoryTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        //        budgetController.add(budgetWithTitle: <#T##String#>, type: <#T##BudgeType#>, budgetAmount: <#T##Double#>, budgetType: <#T##String#>, balance: <#T##Double#>, recordID: <#T##UUID#>, isShared: <#T##Bool#>, user: <#T##User#>, completion: <#T##() -> Void#>)
+    @IBAction func addBudgetTapped(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Create new Budget", message: "Enter title, type, and amount.", preferredStyle: .alert)
+        alert.addTextField()
+        alert.addTextField()
+        alert.addTextField()
+        
+        alert.textFields![0].placeholder = "Budget Title"
+        alert.textFields![1].placeholder = "Budget Type"
+        alert.textFields![2].placeholder = "Budget Amount"
+        alert.textFields![2].keyboardType = .decimalPad
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak self, weak alert] _ in
+            guard let budgetWithTitle = alert?.textFields?[0].text else { return }
+            guard let budgetType = alert?.textFields?[1].text else { return }
+            guard let amount = alert?.textFields?[2].text, let budgetAmount = Double(amount) else { return }
+            self?.createBudget(budgetWithTitle, budgetType, budgetAmount: budgetAmount)
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    func createBudget(_ budgetWithTitle: String, _ budgetType: String, budgetAmount: Double ) {
+        let id = UUID()
+        guard let user = user else { return }
+        budgetController.add(budgetWithTitle: budgetWithTitle, budgetType: budgetType, budgetAmount: budgetAmount, balance: budgetAmount, id: id, isShared: true, user: user) {
+            print("New Budget Created") // This is never getting hit
+            return
+        }
     }
     
     // MARK: - Methods
     func createUser(_ firstName: String, _ lastName: String, _ funds: Double) {
+        let id = UUID()
+        self.user = User(firstName: firstName, funds: funds, lastName: lastName, id: id)
         userController.createUserWith(firstName: firstName, funds: funds, lastName: lastName, ckManager: cloudController) {
-            print("Success")
+            print("User was created")
             return
         }
+    }
+    
+    func totalForAllBudgets(_ budgets: [Budget]) -> Double {
+        var total: Double = 0
+        for budget in budgets{
+            total += budget.budgetAmount
+        }
+        return total
     }
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,9 +110,8 @@ class CategoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") else { return UITableViewCell()}
-        cell.textLabel?.text = budgetController.budgets[indexPath.row].budgetType
-        cell.detailTextLabel?.text = "$\(budgetController.budgets[indexPath.row].balance)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        cell.textLabel?.text = budgetController.budgets[indexPath.row].title
         return cell
     }
 }

@@ -11,8 +11,8 @@ import CloudKit
 
 class ExpenseController {
     
+    // MARK: - Properties
     var ckManager: CloudKitManager?
-    
     var expenses: [Expense] = []
     
     func add(expenseWithDescription description: String, toBudget budget: Budget, amount: Double, id: UUID, user: User, completion: @escaping () -> Void) {
