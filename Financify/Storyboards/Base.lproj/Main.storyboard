@@ -54,11 +54,18 @@
                                 <action selector="addUserTapped:" destination="4fw-nN-OaX" id="tdV-aR-peY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oeJ-te-LML">
-                            <connections>
-                                <action selector="addBudgetTapped:" destination="4fw-nN-OaX" id="hxu-Nu-Jct"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="oeJ-te-LML">
+                                <connections>
+                                    <action selector="addBudgetTapped:" destination="4fw-nN-OaX" id="hxu-Nu-Jct"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="QHX-al-aFU">
+                                <connections>
+                                    <action selector="shareButtonTapped:" destination="4fw-nN-OaX" id="4XA-vw-JnE"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0F-tH-oC0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

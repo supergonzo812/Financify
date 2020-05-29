@@ -48,9 +48,6 @@ class DetailTableViewController: UITableViewController {
     }
     
     func submitEntry(_ expense: String, _ amount: Double) {
-        // TODO - Expense and amount will go here
-        // Sample code: expenseName.insert(expense, at: 0)
-        // amountArray.append(amount)
         let id = UUID()
         guard let budget = budget, let user = user else { return }
         expenseController.add(expenseWithDescription: expense, toBudget: budget, amount: amount, id: id, user: user) {
