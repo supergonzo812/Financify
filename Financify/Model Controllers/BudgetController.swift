@@ -75,8 +75,6 @@ class BudgetController {
                                     guard let fetchedExpenses = expenses else {
                                         completion(); return
                                     }
-                                    
-                                    let expenses = fetchedExpenses.compactMap( {Expense(record: $0)} )
         }
     }
     /**
