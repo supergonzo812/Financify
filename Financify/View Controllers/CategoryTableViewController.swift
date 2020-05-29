@@ -33,7 +33,8 @@ class CategoryTableViewController: UITableViewController {
             guard let firstName = alert?.textFields?[0].text else { return }
             guard let lastName = alert?.textFields?[1].text else { return }
             guard let budget = alert?.textFields?[2].text, let totalBudget = Double(budget) else { return }
-            self?.createUser(firstName, lastName, totalBudget)
+            guard let self = self else { return }
+            self.createUser(firstName, lastName, totalBudget)
         }))
         self.present(alert, animated: true)
     }
@@ -61,9 +62,12 @@ class CategoryTableViewController: UITableViewController {
     
     func createBudget(_ budgetWithTitle: String, _ budgetType: String, budgetAmount: Double ) {
         let id = UUID()
-        guard let user = user else { return }
+        guard let user = self.user else { return }
         budgetController.add(budgetWithTitle: budgetWithTitle, budgetType: budgetType, budgetAmount: budgetAmount, balance: budgetAmount, id: id, isShared: true, user: user) {
-            print("New Budget Created") // This is never getting hit
+            print("New Budget Created")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
             return
         }
     }

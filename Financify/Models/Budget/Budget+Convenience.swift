@@ -33,8 +33,6 @@ extension Budget {
                         forKey: Budget.budgetTypeKey)
         record.setValue(self.isSharedBudget,
                         forKey: Budget.isSharedKey)
-        record.setValue(self.id,
-                        forKey: Budget.recordIDKey)
         record.setValue(self.title,
                         forKey: Budget.titleKey)
         return record

@@ -16,7 +16,7 @@ class BudgetController {
     
     var userController: UserController?
     var budgetController: BudgetController?
-    var ckManager: CloudKitManager?
+    var ckManager = CloudKitManager()
     var expenseController = ExpenseController()
     /// The array of budgets for a single user.
     var budgets: [Budget] = []
@@ -29,10 +29,7 @@ class BudgetController {
      - completion: A completion handler which takes no arguments and returns a Void type.
      */
     func fetchAllBudgetsFromCloudKit(completion: @escaping () -> Void) {
-        guard let ckManager = ckManager else {
-            completion()
-            return
-        }
+        
         ckManager.fetchRecordsOf(type: Budget.typeKey, database: CloudKitManager.database) { (records, error) in
             if let error = error {
                 print("Error fetching budgets from CloudKit: \(error.localizedDescription)")
@@ -67,11 +64,7 @@ class BudgetController {
         
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
                                                                                     predicate2])
-        
-        guard let ckManager = ckManager
-            else {
-                completion(); return
-        }
+    
         
         ckManager.fetchRecordsOf(type: Expense.typeKey,
                                  predicate: compoundPredicate,
@@ -106,8 +99,6 @@ class BudgetController {
      */
     func add(budgetWithTitle title: String, budgetType: String, budgetAmount: Double, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
-        guard let ckManager = ckManager else { return }
-        
         let budget = Budget(balance: balance,
                             budgetAmount: budgetAmount,
                             budgetType: budgetType,
@@ -120,12 +111,13 @@ class BudgetController {
                                        database: CloudKitManager.database) { (record, error) in
                                         if let error = error {
                                             NSLog("Error saving budget to CloudKit: \(error.localizedDescription)")
+                                            completion()
                                         } else {
                                             self.budgets.append(budget)
+                                            CoreDataStack.shared.save()
+                                            completion()
                                         }
         }
-        budgets.append(budget)
-        CoreDataStack.shared.save()
     }
     /**
      Verifies the passed 'Budget' object exists in the 'budgets' array then deletes the passed in object from CloudKit, from CoreDate, and from the 'budgets' array.
