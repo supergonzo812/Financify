@@ -6,6 +6,9 @@ Financify is a personal finance app to help you keep track of your spending and 
 
 # Onboarding
 We get it, you want to get into the app as fast as possible, and we want to get you using the app as fast as possible. That's why we created a brief intro to the app to help you get started.
-<img align="left" width="300" height="600" src="ReadMeAssets/OnboardingDemo.gif"> 
 
+<img style="float: right;" width="300" height="600" src="ReadMeAssets/OnboardingDemo.gif"> 
 
+# Walkthrough
+We created a quick walkthrough of how to use the app to take the guess work out. It's really fast and really simple.
+<img style="float: right;" width="300" height="600" src="ReadMeAssets/WalkthroughDemo.gif"> 
