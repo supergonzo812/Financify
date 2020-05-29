@@ -47,9 +47,8 @@ class BudgetController {
     /**
      Fetches all the records for 'Expense.typeKey' on the passed in budget, and sets the returning values to the 'expenses' object on the 'ExpenseViewController' as an array of 'Expense' objects.
      
-     - Parameters:
-     -budget: A 'Budget' object
-     -completion: A completion handler which takes no arguments and returns a Void type.
+     - Parameter budget: A 'Budget' object
+     - Parameter completion: A completion handler which takes no arguments and returns a Void type.
      */
     func fetchExpensesFrom(budget: Budget, completion: @escaping () -> Void) {
         let budgetReference = CKRecord.Reference(recordID: budget.cloudKitRecord.recordID,
@@ -64,7 +63,7 @@ class BudgetController {
         
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,
                                                                                     predicate2])
-    
+        
         
         ckManager.fetchRecordsOf(type: Expense.typeKey,
                                  predicate: compoundPredicate,
@@ -85,8 +84,7 @@ class BudgetController {
     /**
      Creates a new 'Budget' object with the provided parameters.  Then saves the new 'Budget' object to CloudKit as well as CoreData, and appends the new 'Budget' object to the 'budgets' array on the 'BudgetController'.
      
-     - Parameters:
-     - Parameter budgetWithTitle:  A String value describing the budget.
+     - Parameter title:  A String value describing the budget.
      - Parameter budgetType: A String value which describes the classification of the budget (i.e. utilities, insurance)
      - Parameter budgetAmount: A Double value representing the dollar amount allocated to this budget.
      - Parameter balance:  A Double value representing the remaining balance.
@@ -95,7 +93,7 @@ class BudgetController {
      - Parameter user: A User object which represents the individual creating the budget.
      
      - Returns:
-        completion: A completion handler which takes no arguments and returns a Void type.
+     completion: A completion handler which takes no arguments and returns a Void type.
      */
     func add(budgetWithTitle title: String, budgetType: String, budgetAmount: Double, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
         
@@ -122,8 +120,7 @@ class BudgetController {
     /**
      Verifies the passed 'Budget' object exists in the 'budgets' array then deletes the passed in object from CloudKit, from CoreDate, and from the 'budgets' array.
      
-     - Parameters:
-     - budget: A Budget object.
+     - Parameter budget: A Budget object.
      */
     func delete(budget: Budget) {
         guard

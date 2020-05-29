@@ -119,4 +119,5 @@ class CategoryTableViewController: UITableViewController {
         cell.detailTextLabel?.text = "$\(budgetController.budgets[indexPath.row].balance)"
         return cell
     }
+    
 }

@@ -44,6 +44,8 @@ class UserController {
                                         completion()
         }
         CoreDataStack.shared.save()
+        
+        budgetController?.add(budgetWithTitle: <#T##String#>, budgetType: <#T##String#>, budgetAmount: <#T##Double#>, balance: <#T##Double#>, id: <#T##UUID#>, isShared: <#T##Bool#>, user: <#T##User#>, completion: <#T##() -> Void#>)
     }
     
 }
