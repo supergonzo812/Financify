@@ -12,9 +12,15 @@ import CloudKit
 class ExpenseController {
     
     // MARK: - Properties
+    
     var ckManager =  CloudKitManager()
     
-    func add(expenseWithDescription description: String, toBudget budget: Budget, amount: Double, id: UUID, user: User, completion: @escaping () -> Void) {
+    func add(expenseWithDescription description: String,
+             toBudget budget: Budget,
+             amount: Double,
+             id: UUID,
+             user: User,
+             completion: @escaping () -> Void) {
         
         let newExpense = Expense(amount: amount,
                                  expenseDescription: description,
@@ -48,7 +54,7 @@ class ExpenseController {
     
     func totalExpenses(for expenses: [Expense]) -> Double {
         var total: Double = 0
-        for expense in expenses{
+        for expense in expenses {
             total += expense.amount
         }
         return total

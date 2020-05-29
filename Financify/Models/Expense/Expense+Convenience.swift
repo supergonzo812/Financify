@@ -26,8 +26,6 @@ extension Expense {
                         forKey: Expense.amountKey)
         record.setValue(self.expenseDescription,
                         forKey: Expense.expenseDescriptionKey)
-//        record.setValue(self.id,
-//                        forKey: Expense.recordIDKey)
         return record
     }
     

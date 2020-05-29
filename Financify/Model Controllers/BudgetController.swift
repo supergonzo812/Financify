@@ -66,14 +66,10 @@ class BudgetController {
         
         
         ckManager.fetchRecordsOf(type: Expense.typeKey,
-                                 predicate: compoundPredicate,
-                                 database: CloudKitManager.database) { (expenses, error) in
+                                 database: CloudKitManager.database,
+                                 predicate: compoundPredicate) { (_, error) in
                                     if let error = error {
                                         NSLog("Error fetching expenses from Cloudkit: \(error)")
-                                    }
-                                    
-                                    guard let fetchedExpenses = expenses else {
-                                        completion(); return
                                     }
         }
     }
@@ -91,7 +87,14 @@ class BudgetController {
      - Returns:
      completion: A completion handler which takes no arguments and returns a Void type.
      */
-    func add(budgetWithTitle title: String, budgetType: String, budgetAmount: Double, balance: Double, id: UUID, isShared: Bool, user: User, completion: @escaping () -> Void) {
+    func add(budgetWithTitle title: String,
+             budgetType: String,
+             budgetAmount: Double,
+             balance: Double,
+             id: UUID,
+             isShared: Bool,
+             user: User,
+             completion: @escaping () -> Void) {
         
         let budget = Budget(balance: balance,
                             budgetAmount: budgetAmount,
@@ -102,7 +105,7 @@ class BudgetController {
                             user: user)
         
         ckManager.saveRecordToCloudKit(record: budget.cloudKitRecord,
-                                       database: CloudKitManager.database) { (record, error) in
+                                       database: CloudKitManager.database) { (_, error) in
                                         if let error = error {
                                             NSLog("Error saving budget to CloudKit: \(error.localizedDescription)")
                                             completion()
@@ -137,7 +140,7 @@ class BudgetController {
      */
     func totalForAllBudgets(_ budgets: [Budget]) -> Double {
         var total: Double = 0
-        for budget in budgets{
+        for budget in budgets {
             total += budget.budgetAmount
         }
         return total
@@ -147,7 +150,7 @@ class BudgetController {
     
     private func updateBudgets(with representations: [BudgetRepresentation]) throws {
         
-        let budgetsWithID = representations.filter( { $0.id != nil})
+        let budgetsWithID = representations.filter({ $0.id != nil })
         let budgetIDsToFetch = budgetsWithID.compactMap { UUID(uuidString: $0.id!.uuidString) }
         
         let representationByID = Dictionary(uniqueKeysWithValues: zip(budgetIDsToFetch, budgetsWithID))
@@ -160,7 +163,7 @@ class BudgetController {
         let context = CoreDataStack.shared.container.newBackgroundContext()
         
         context.performAndWait {
-            do{
+            do {
                 let existingBudget = try context.fetch(fetchRequest)
                 
                 for budget in existingBudget {
@@ -204,4 +207,3 @@ class BudgetController {
         budget.title = title
     }
 }
-

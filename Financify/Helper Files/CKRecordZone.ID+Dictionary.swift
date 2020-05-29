@@ -14,13 +14,12 @@ extension CKRecordZone.ID {
     private static var ownerNameKey: String { "ownerName" }
 
     var dictionaryRepresentation: [String: String] {
-        return [Self.zoneNameKey: zoneName,
-                Self.ownerNameKey: ownerName]
+        [Self.zoneNameKey: zoneName, Self.ownerNameKey: ownerName]
     }
     
     convenience init?(dictionary: [String: String]) {
         guard let zoneName = dictionary[Self.zoneNameKey],
-            let ownerName = dictionary[Self.ownerNameKey] else { return nil}
+            let ownerName = dictionary[Self.ownerNameKey] else { return nil }
 
         self.init(zoneName: zoneName, ownerName: ownerName)
     }

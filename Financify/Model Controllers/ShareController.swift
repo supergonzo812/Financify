@@ -14,7 +14,7 @@ class ShareController: NSObject {
     // MARK: - Properties
     
     static var sharingZoneID: CKRecordZone.ID = {
-        return CKRecordZone.ID(zoneName: "ShareZone", ownerName: CKCurrentUserDefaultName)
+        CKRecordZone.ID(zoneName: "ShareZone", ownerName: CKCurrentUserDefaultName)
     }()
     
     private var userToSave: User?
@@ -39,25 +39,25 @@ class ShareController: NSObject {
     
     // MARK: - New Shares
     
-    func createCloudSharingController(with budget: Budget) -> UICloudSharingController {
-        
-        self.budgetToSave = budget
-        
-        let share = CKShare(rootRecord: budget.cloudKitRecord,
-                            shareID: budget.cloudKitRecord.recordID)
-        
-        share.setValue(budget.title, forKey: CKShare.SystemFieldKey.title)
-        share.setValue(kCFBundleIdentifierKey, forKey: CKShare.SystemFieldKey.shareType)
-        
-        let controller = UICloudSharingController { (controller, completion) in
-            self.share(rootRecord: budget.cloudKitRecord, completion: completion)
-        }
-        
-        controller.availablePermissions = []
-        controller.delegate = self
-        
-        return controller
-    }
+//    func createCloudSharingController(with budget: Budget) -> UICloudSharingController {
+//
+//        self.budgetToSave = budget
+//
+//        let share = CKShare(rootRecord: budget.cloudKitRecord,
+//                            shareID: budget.cloudKitRecord.recordID)
+//
+//        share.setValue(budget.title, forKey: CKShare.SystemFieldKey.title)
+//        share.setValue(kCFBundleIdentifierKey, forKey: CKShare.SystemFieldKey.shareType)
+//
+//        let controller = UICloudSharingController { (controller, completion) in
+//            self.share(rootRecord: budget.cloudKitRecord, completion: completion)
+//        }
+//
+//        controller.availablePermissions = []
+//        controller.delegate = self
+//
+//        return controller
+//    }
     
     func share(rootRecord: CKRecord, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) {
         
@@ -92,7 +92,7 @@ class ShareController: NSObject {
         
         let modifyZoneOperation = CKModifyRecordZonesOperation(recordZonesToSave: [shareZone], recordZoneIDsToDelete: nil)
         
-        modifyZoneOperation.modifyRecordZonesCompletionBlock =  { (_, _, error) in
+        modifyZoneOperation.modifyRecordZonesCompletionBlock = { (_, _, error) in
             
             if let error = error {
                 NSLog("Error creating sharing zone: \(error)")

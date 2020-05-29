@@ -13,6 +13,8 @@ import CloudKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         application.registerForRemoteNotifications()
         return true
@@ -21,10 +23,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("\(error)")
     }
- 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
+    }
+    
+    func application(_ application: UIApplication, userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
+        
+        let acceptSharing: CKAcceptSharesOperation = CKAcceptSharesOperation(shareMetadatas: [cloudKitShareMetadata])
+        
+        acceptSharing.qualityOfService = .userInteractive
+        acceptSharing.perShareCompletionBlock = {meta, share, error in
+            print("successfully shared")
+        }
+        acceptSharing.acceptSharesCompletionBlock = {
+            error in
+            if error != nil {
+                print("Error \(error?.localizedDescription ?? "")")
+                return
+            } else {
+            guard let viewController: CategoryTableViewController =
+                self.window?.rootViewController as? CategoryTableViewController else { return }
+            viewController.fetchShare(cloudKitShareMetadata)
+            }
+        }
+        CKContainer(identifier: cloudKitShareMetadata.containerIdentifier).add(acceptSharing)
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -37,18 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         info.soundName = "default"
         
         subscription.notificationInfo = info
-        
-//        CKContainer.default().publicCloudDatabase.save(subscription) { (subscription, error) in
-//            if error != nil {
-//                NSLog("Error: \(error)")
-//                return
-//            }
-//        }
     }
     
     // MARK: UISceneSession Lifecycle
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        UISceneConfiguration(name: "Default Configuration",
+                             sessionRole: connectingSceneSession.role)
     }
     
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {

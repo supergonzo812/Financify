@@ -18,12 +18,12 @@ extension Budget {
     private static let budgetTypeKey = "budgetType"
     private static let isSharedKey = "isSharedBudget"
     private static let recordIDKey = "id"
-    private static let titleKey = "title"
+    static let titleKey = "title"
     
     var totalRemaining: Double {
         guard let expenses = expenses?.array as? [Expense] else { return balance }
         let totalSpent = expenses.reduce(0) { (result, expense) -> Double in
-            return result + expense.amount
+            result + expense.amount
         }
         return balance - totalSpent
     }
@@ -112,7 +112,6 @@ extension Budget {
     }
 }
 
-func ==(lhs: Budget, rhs: Budget) -> Bool {
-    return lhs.id == rhs.id
+func == (lhs: Budget, rhs: Budget) -> Bool {
+    lhs.id == rhs.id
 }
-

@@ -36,12 +36,14 @@ class CloudKitManager {
         }
     }
     
-    func fetchRecordsOf(type: String, predicate: NSPredicate = NSPredicate(value: true), database: CKDatabase, completion: @escaping ([CKRecord]?, Error?) -> Void) {
+    func fetchRecordsOf(type: String,
+                        database: CKDatabase,
+                        predicate: NSPredicate = NSPredicate(value: true),
+                        completion: @escaping ([CKRecord]?, Error?) -> Void) {
         
         let query = CKQuery(recordType: type, predicate: predicate)
         
         database.perform(query, inZoneWith: nil, completionHandler: completion)
-        
     }
     
 }
