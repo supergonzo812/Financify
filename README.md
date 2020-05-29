@@ -12,3 +12,13 @@ We get it, you want to get into the app as fast as possible, and we want to get 
 # Walkthrough
 We created a quick walkthrough of how to use the app to take the guess work out. It's really fast and really simple.
 <img style="float: right;" width="300" height="600" src="ReadMeAssets/WalkthroughDemo.gif"> 
+
+# Features
+* Create Various Categories
+* Set yourself a unique budget for each category you create
+* Each expense you add will automatically be deducted from the budget you created
+* iCloud sharing allows multiple people to edit the budget
+
+# Authors
+* Christopher Gonzales
+* Enrique Gongora
