@@ -10,9 +10,9 @@ import CloudKit
 
 extension CKRecordZone.ID {
     
-    static private var zoneNameKey: String { "zoneName" }
-    static private var ownerNameKey: String { "ownerName" }
-    
+    private static var zoneNameKey: String { "zoneName" }
+    private static var ownerNameKey: String { "ownerName" }
+
     var dictionaryRepresentation: [String: String] {
         return [Self.zoneNameKey: zoneName,
                 Self.ownerNameKey: ownerName]

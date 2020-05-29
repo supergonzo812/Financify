@@ -18,19 +18,24 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     weak var onboardingPageViewDelegate: OnboardingPageViewControllerDelegate?
     var pageHeadings = ["Welcome to Financify", "Automatic Updating", "Allow Notifications", "You're all done!"]
     var pageImages = ["Financify Onboarding Logo", "iCloud Logo", "Notification", "You're All Done"]
-    var pageSubHeadings = ["We’ll help make it easier for you to keep track of your spendings and earnings.", "With iCloud, we'll update all your information with no work required on your part.", "Let us keep you up to date with your finances so you never miss a beat", "Setup is now complete. Let's take you to the app!"]
+    var pageSubHeadings = ["We’ll help make it easier for you to keep track of your spendings and earnings.",
+                           "With iCloud, we'll update all your information with no work required on your part.",
+                           "Let us keep you up to date with your finances so you never miss a beat",
+                           "Setup is now complete. Let's take you to the app!"]
     var currentIndex = 0
     
     // MARK: - Methods
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        var index = (viewController as! OnboardingContentViewController).index
-        index -= 1
+        guard let index = (viewController as? OnboardingContentViewController)?.index else { return UIViewController() }
+        var newIndex = index
+        newIndex -= 1
         return contentViewController(at: index)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        var index = (viewController as! OnboardingContentViewController).index
-        index += 1
+        guard let index = (viewController as? OnboardingContentViewController)?.index else { return UIViewController() }
+        var newIndex = index
+        newIndex += 1
         return contentViewController(at: index)
     }
     

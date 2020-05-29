@@ -111,7 +111,7 @@ class ShareController: NSObject {
         let query = CKQuery(recordType: "Budget", predicate: predicate)
         
         guard let zoneIDDictionaries = Self.loadSavedZoneIDs(),
-            zoneIDDictionaries.count > 0 else {
+            !zoneIDDictionaries.isEmpty else {
                 completion()
                 return
         }
