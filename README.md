@@ -19,6 +19,9 @@ We created a quick walkthrough of how to use the app to take the guess work out.
 * Each expense you add will automatically be deducted from the budget you created
 * iCloud sharing allows multiple people to edit the budget
 
+# Additional Screenshots
+<img style="float: right;" width="2000" height="600" src="ReadMeAssets/ThreePhoneScreenshot.png"> 
+
 # Authors
 * Christopher Gonzales
 * Enrique Gongora
