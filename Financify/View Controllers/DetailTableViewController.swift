@@ -52,27 +52,24 @@ class DetailTableViewController: UITableViewController {
         // Sample code: expenseName.insert(expense, at: 0)
         // amountArray.append(amount)
         let id = UUID()
-        guard let budget = budget else { return }
-        guard let user = user else { return }
+        guard let budget = budget, let user = user else { return }
         expenseController.add(expenseWithDescription: expense, toBudget: budget, amount: amount, id: id, user: user) {
             print("Expense Added")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
             return
         }
-        tableView.reloadData()
-        return
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0 //Name of the expense.count
+        return expenseController.expenses.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
-        /*
-         cell.textLabel?.text = expenseName[indexPath.row]
-         cell.detailTextLabel?.text = "$\(amountArray[indexPath.row])"
-         */
+        cell.textLabel?.text = expenseController.expenses[indexPath.row].expenseDescription
         return cell
     }
 }

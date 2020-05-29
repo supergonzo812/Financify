@@ -184,8 +184,8 @@
 			children = (
 				5C94F72D247C815A0000B0EA /* OnboardingViewController.swift */,
 				5C8A442D247D72A300244909 /* CategoryTableViewController.swift */,
-				5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */,
 				5C8A442F247D758500244909 /* DetailTableViewController.swift */,
+				5C94F72F247C82EF0000B0EA /* OnboardingContentViewController.swift */,
 				5C1D8CC4247C85B700027878 /* OnboardingPageViewController.swift */,
 			);
 			path = "View Controllers";
