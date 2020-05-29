@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol userEnteredNumber {
-    
-}
-
 class DetailTableViewController: UITableViewController {
     
     // MARK: - Properties
