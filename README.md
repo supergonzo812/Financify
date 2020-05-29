@@ -9,6 +9,3 @@ We get it, you want to get into the app as fast as possible, and we want to get 
 <img align="left" width="300" height="600" src="ReadMeAssets/OnboardingDemo.gif"> 
 
 
-# Walkthrough
-We created a quick walkthrough of how to use your app to take the guess work out. It's really fast and really simple.
-<img align="left" width="300" height="600" src="ReadMeAssets/WalkthroughDemo.gif"> 
