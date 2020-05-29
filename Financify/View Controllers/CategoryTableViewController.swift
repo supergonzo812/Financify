@@ -116,6 +116,7 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         cell.textLabel?.text = budgetController.budgets[indexPath.row].title
+        cell.detailTextLabel?.text = "$\(budgetController.budgets[indexPath.row].balance)"
         return cell
     }
 }
