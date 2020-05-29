@@ -15,6 +15,7 @@ class CategoryTableViewController: UITableViewController {
     var userController = UserController()
     var budgetController = BudgetController()
     var user: User?
+    var id = UUID()
     
     // MARK: - IBActions
     @IBAction func addUserTapped(_ sender: UIBarButtonItem) {
@@ -61,7 +62,6 @@ class CategoryTableViewController: UITableViewController {
     }
     
     func createBudget(_ budgetWithTitle: String, _ budgetType: String, budgetAmount: Double ) {
-        let id = UUID()
         guard let user = self.user else { return }
         budgetController.add(budgetWithTitle: budgetWithTitle, budgetType: budgetType, budgetAmount: budgetAmount, balance: budgetAmount, id: id, isShared: true, user: user) {
             print("New Budget Created")
@@ -74,7 +74,6 @@ class CategoryTableViewController: UITableViewController {
     
     // MARK: - Methods
     func createUser(_ firstName: String, _ lastName: String, _ funds: Double) {
-        let id = UUID()
         self.user = User(firstName: firstName, funds: funds, lastName: lastName, id: id)
         userController.createUserWith(firstName: firstName, funds: funds, lastName: lastName, ckManager: cloudController) {
             print("User was created")
@@ -118,5 +117,13 @@ class CategoryTableViewController: UITableViewController {
         cell.textLabel?.text = budgetController.budgets[indexPath.row].title
         cell.detailTextLabel?.text = "$\(budgetController.budgets[indexPath.row].balance)"
         return cell
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let vc = segue.destination as? DetailTableViewController
+        vc?.user = self.user
+        vc?.budget = budgetController.budgets[indexPath.row]
     }
 }
