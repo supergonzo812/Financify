@@ -15,7 +15,6 @@ class CategoryTableViewController: UITableViewController {
     var userController = UserController()
     var budgetController = BudgetController()
     var user: User?
-    var budget: Budget?
     
     // MARK: - IBActions
     @IBAction func addUserTapped(_ sender: UIBarButtonItem) {
@@ -64,7 +63,7 @@ class CategoryTableViewController: UITableViewController {
         let id = UUID()
         guard let user = user else { return }
         budgetController.add(budgetWithTitle: budgetWithTitle, budgetType: budgetType, budgetAmount: budgetAmount, balance: budgetAmount, id: id, isShared: true, user: user) {
-            print("Budget Created")
+            print("New Budget Created") // This is never getting hit
             return
         }
     }
@@ -74,7 +73,7 @@ class CategoryTableViewController: UITableViewController {
         let id = UUID()
         self.user = User(firstName: firstName, funds: funds, lastName: lastName, id: id)
         userController.createUserWith(firstName: firstName, funds: funds, lastName: lastName, ckManager: cloudController) {
-            print("User created")
+            print("User was created")
             return
         }
     }
@@ -113,7 +112,6 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         cell.textLabel?.text = budgetController.budgets[indexPath.row].title
-        cell.detailTextLabel?.text = "$0.00"
         return cell
     }
 }

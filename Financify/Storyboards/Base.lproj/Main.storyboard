@@ -39,7 +39,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="YJ9-Zj-zaZ" kind="show" id="08i-nS-wWm"/>
+                                    <segue destination="YJ9-Zj-zaZ" kind="show" identifier="goToDetailSegue" id="08i-nS-wWm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

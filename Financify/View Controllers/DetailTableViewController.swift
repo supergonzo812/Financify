@@ -12,6 +12,7 @@ class DetailTableViewController: UITableViewController {
     
     // MARK: - Properties
     var expenseController = ExpenseController()
+    var budget: Budget?
     var user: User?
     
     // MARK: - IBActions
@@ -51,7 +52,12 @@ class DetailTableViewController: UITableViewController {
         // Sample code: expenseName.insert(expense, at: 0)
         // amountArray.append(amount)
         let id = UUID()
-//        expenseController.add(expenseWithDescription: <#T##String#>, toBudget: <#T##Budget#>, amount: amount, id: id, user: <#T##User#>, completion: <#T##() -> Void#>)
+        guard let budget = budget else { return }
+        guard let user = user else { return }
+        expenseController.add(expenseWithDescription: expense, toBudget: budget, amount: amount, id: id, user: user) {
+            print("Expense Added")
+            return
+        }
         tableView.reloadData()
         return
     }
