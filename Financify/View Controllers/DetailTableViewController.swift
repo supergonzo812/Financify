@@ -12,6 +12,7 @@ class DetailTableViewController: UITableViewController {
     
     // MARK: - Properties
     var expenseController = ExpenseController()
+    var user: User?
     
     // MARK: - IBActions
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
@@ -49,6 +50,8 @@ class DetailTableViewController: UITableViewController {
         // TODO - Expense and amount will go here
         // Sample code: expenseName.insert(expense, at: 0)
         // amountArray.append(amount)
+        let id = UUID()
+//        expenseController.add(expenseWithDescription: <#T##String#>, toBudget: <#T##Budget#>, amount: amount, id: id, user: <#T##User#>, completion: <#T##() -> Void#>)
         tableView.reloadData()
         return
     }

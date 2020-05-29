@@ -13,8 +13,9 @@ class CategoryTableViewController: UITableViewController {
     // MARK: - Properties
     var cloudController = CloudKitManager()
     var userController = UserController()
+    var budgetController = BudgetController()
     var user: User?
-    var categoryArray: [String] = ["Expenses", "Bills", "Income", "Budget"]
+    var budget: Budget?
     
     // MARK: - IBActions
     @IBAction func addUserTapped(_ sender: UIBarButtonItem) {
@@ -26,6 +27,7 @@ class CategoryTableViewController: UITableViewController {
         alert.textFields![0].placeholder = "First Name"
         alert.textFields![1].placeholder = "Last Name"
         alert.textFields![2].placeholder = "Budget Total"
+        alert.textFields![2].keyboardType = .decimalPad
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak self, weak alert] _ in
@@ -35,6 +37,36 @@ class CategoryTableViewController: UITableViewController {
             self?.createUser(firstName, lastName, totalBudget)
         }))
         self.present(alert, animated: true)
+    }
+    
+    @IBAction func addBudgetTapped(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Create new Budget", message: "Enter title, type, and amount.", preferredStyle: .alert)
+        alert.addTextField()
+        alert.addTextField()
+        alert.addTextField()
+        
+        alert.textFields![0].placeholder = "Budget Title"
+        alert.textFields![1].placeholder = "Budget Type"
+        alert.textFields![2].placeholder = "Budget Amount"
+        alert.textFields![2].keyboardType = .decimalPad
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak self, weak alert] _ in
+            guard let budgetWithTitle = alert?.textFields?[0].text else { return }
+            guard let budgetType = alert?.textFields?[1].text else { return }
+            guard let amount = alert?.textFields?[2].text, let budgetAmount = Double(amount) else { return }
+            self?.createBudget(budgetWithTitle, budgetType, budgetAmount: budgetAmount)
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    func createBudget(_ budgetWithTitle: String, _ budgetType: String, budgetAmount: Double ) {
+        let id = UUID()
+        guard let user = user else { return }
+        budgetController.add(budgetWithTitle: budgetWithTitle, budgetType: budgetType, budgetAmount: budgetAmount, balance: budgetAmount, id: id, isShared: true, user: user) {
+            print("Budget Created")
+            return
+        }
     }
     
     // MARK: - Methods
@@ -75,12 +107,12 @@ class CategoryTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        return budgetController.budgets.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        cell.textLabel?.text = categoryArray[indexPath.row]
+        cell.textLabel?.text = budgetController.budgets[indexPath.row].title
         cell.detailTextLabel?.text = "$0.00"
         return cell
     }
