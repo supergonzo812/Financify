@@ -61,6 +61,10 @@ class CategoryTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
+    @IBAction func shareButtonTapped(_ sender: UIBarButtonItem) {
+    }
+    
+    
     func createBudget(_ budgetWithTitle: String, _ budgetType: String, budgetAmount: Double ) {
         guard let user = self.user else { return }
         budgetController.add(budgetWithTitle: budgetWithTitle, budgetType: budgetType, budgetAmount: budgetAmount, balance: budgetAmount, id: id, isShared: true, user: user) {
@@ -107,6 +111,11 @@ class CategoryTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return budgetController.budgets.count
@@ -115,7 +124,7 @@ class CategoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         cell.textLabel?.text = budgetController.budgets[indexPath.row].title
-        cell.detailTextLabel?.text = "$\(budgetController.budgets[indexPath.row].balance)"
+        cell.detailTextLabel?.text = "$\(budgetController.budgets[indexPath.row].totalRemaining)"
         return cell
     }
     

@@ -15,11 +15,21 @@ class CloudKitManager {
     
     func saveRecordToCloudKit(record: CKRecord, database: CKDatabase, completion: @escaping (CKRecord?, Error?) -> Void = { (_, _ ) in }) {
         
-        database.save(record) { (record, error) in
-            completion(record, error)
+        let modifyRecordsOp = CKModifyRecordsOperation(recordsToSave: [record])
+        
+        // This allows information to be changed
+        modifyRecordsOp.savePolicy = .changedKeys
+        
+        // This gets called once everything gets saved
+        modifyRecordsOp.modifyRecordsCompletionBlock = { (records, _, error) in
+            if let error = error {
+                NSLog("Error saving entry to CloudKit: \(error)")
+                return
+            }
+            completion(records?.first, error)
         }
+        database.add(modifyRecordsOp)
     }
-    
     func deleteRecordFromCloudKitWith(recordID: CKRecord.ID, database: CKDatabase, completion: @escaping (Error?) -> Void) {
         database.delete(withRecordID: recordID) { (_, error) in
             completion(error)
@@ -35,4 +45,3 @@ class CloudKitManager {
     }
     
 }
-

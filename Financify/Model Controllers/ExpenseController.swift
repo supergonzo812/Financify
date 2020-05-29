@@ -13,7 +13,6 @@ class ExpenseController {
     
     // MARK: - Properties
     var ckManager =  CloudKitManager()
-    var expenses: [Expense] = []
     
     func add(expenseWithDescription description: String, toBudget budget: Budget, amount: Double, id: UUID, user: User, completion: @escaping () -> Void) {
         
@@ -29,18 +28,14 @@ class ExpenseController {
                                             NSLog("Error saving budget to CloudKit: \(error.localizedDescription)")
                                             completion()
                                         } else {
-                                            self.expenses.append(newExpense)
-                                            CoreDataStack.shared.save()
+                                            
                                             completion()
                                         }
         }
+        CoreDataStack.shared.save()
     }
     
     func delete(expense: Expense) {
-        guard
-            let index = expenses.firstIndex(of: expense) else { return }
-        
-        self.expenses.remove(at: index)
         
         CloudKitManager.database.delete(withRecordID: expense.ckRecordID) { (_, error) in
             if let error = error {

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol userEnteredNumber {
+    
+}
+
 class DetailTableViewController: UITableViewController {
     
     // MARK: - Properties
@@ -19,7 +23,7 @@ class DetailTableViewController: UITableViewController {
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         showAlert()
     }
-
+    
     // MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +65,14 @@ class DetailTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenseController.expenses.count
+        return budget?.expenses?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
-        cell.textLabel?.text = expenseController.expenses[indexPath.row].expenseDescription
-        cell.detailTextLabel?.text = "$\(expenseController.expenses[indexPath.row].amount)"
+        let expense = budget?.expenses?.object(at: indexPath.row) as? Expense
+        cell.textLabel?.text = expense?.expenseDescription
+        cell.detailTextLabel?.text = "$\(expense?.amount ?? 0)"
         return cell
     }
 }

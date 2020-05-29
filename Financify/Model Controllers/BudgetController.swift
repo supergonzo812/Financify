@@ -55,7 +55,7 @@ class BudgetController {
                                                  action: .deleteSelf)
         let predicate = NSPredicate(format: "budgetReference == %@", budgetReference)
         
-        guard let expenseRecordIDs = budget.expenses?.allObjects.compactMap({ ($0 as? Expense)?.ckRecordID }) else {
+        guard let expenseRecordIDs = budget.expenses?.array.compactMap({ ($0 as? Expense)?.ckRecordID }) else {
             completion(); return
         }
         
@@ -77,8 +77,6 @@ class BudgetController {
                                     }
                                     
                                     let expenses = fetchedExpenses.compactMap( {Expense(record: $0)} )
-                                    
-                                    self.expenseController.expenses.append(contentsOf: expenses)
         }
     }
     /**

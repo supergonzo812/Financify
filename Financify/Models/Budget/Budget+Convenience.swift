@@ -20,6 +20,13 @@ extension Budget {
     private static let recordIDKey = "id"
     private static let titleKey = "title"
     
+    var totalRemaining: Double {
+        guard let expenses = expenses?.array as? [Expense] else { return balance }
+        let totalSpent = expenses.reduce(0) { (result, expense) -> Double in
+            return result + expense.amount
+        }
+        return balance - totalSpent
+    }
     
     var cloudKitRecord: CKRecord {
         let idString = id?.uuidString ?? UUID().uuidString
@@ -74,7 +81,7 @@ extension Budget {
             let id = budgetRepresentation.id,
             let title = budgetRepresentation.title,
             let user = user else {
-            return nil
+                return nil
         }
         
         self.init(balance: balance,
