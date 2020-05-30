@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol OnboardingPageViewControllerDelegate: class {
+protocol OnboardingPageViewControllerDelegate: AnyObject {
     func didUpdatePageIndex(currentIndex: Int)
 }
 

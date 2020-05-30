@@ -130,9 +130,6 @@ class CategoryTableViewController: UITableViewController {
                 print("error \(error?.localizedDescription ?? "")")
                 return
             }
-            DispatchQueue.main.async {
-                /// TODO: Need to assign budget to array
-            }
         }
         ckOperation.fetchRecordsCompletionBlock = { _, error in
             guard error != nil else {
