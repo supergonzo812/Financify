@@ -15,9 +15,9 @@ class OnboardingViewController: UIViewController, OnboardingPageViewControllerDe
     weak var onboardingPageViewController: OnboardingPageViewController?
     
     // MARK: - IBOutlets
-    @IBOutlet weak var skipButton: UIButton!
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var nextButton: UIButton! {
+    @IBOutlet private weak var skipButton: UIButton!
+    @IBOutlet private weak var pageControl: UIPageControl!
+    @IBOutlet private weak var nextButton: UIButton! {
         didSet {
             nextButton.layer.cornerRadius = 25.0
             nextButton.layer.masksToBounds = true

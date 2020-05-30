@@ -204,4 +204,3 @@ class CategoryTableViewController: UITableViewController {
         vc?.budget = budgetController.budgets[indexPath.row]
     }
 }
-

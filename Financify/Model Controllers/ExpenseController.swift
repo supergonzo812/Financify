@@ -13,7 +13,7 @@ class ExpenseController {
     
     // MARK: - Properties
     
-    var ckManager =  CloudKitManager()
+    var ckManager = CloudKitManager()
     
     func add(expenseWithDescription description: String,
              toBudget budget: Budget,

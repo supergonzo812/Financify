@@ -17,17 +17,17 @@ class OnboardingContentViewController: UIViewController {
     var imageFile = ""
     
     // MARK: - IBOutlets
-    @IBOutlet weak var headingLabel: UILabel! {
+   @IBOutlet private weak var headingLabel: UILabel! {
         didSet {
             headingLabel.numberOfLines = 0
         }
     }
-    @IBOutlet weak var subHeadingLabel: UILabel! {
+    @IBOutlet private weak var subHeadingLabel: UILabel! {
         didSet {
             subHeadingLabel.numberOfLines = 0
         }
     }
-    @IBOutlet weak var contentImageView: UIImageView!
+    @IBOutlet private weak var contentImageView: UIImageView!
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {

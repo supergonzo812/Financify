@@ -61,7 +61,10 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         }
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
         if completed {
             if let contentViewController = pageViewController.viewControllers?.first as? OnboardingContentViewController {
                 currentIndex = contentViewController.index

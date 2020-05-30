@@ -37,7 +37,7 @@ class UserController {
                         id: UUID())
         
         ckManager.saveRecordToCloudKit(record: user.cloudKitRecord,
-                                       database: CloudKitManager.database) { (record, error) in
+                                       database: CloudKitManager.database) { (_, error) in
                                         if let error = error {
                                             print("Error saving user record to CloudKit: \(error.localizedDescription)")
                                         }
