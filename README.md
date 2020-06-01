@@ -11,6 +11,7 @@ We get it, you want to get into the app as fast as possible, and we want to get 
 
 # Walkthrough
 We created a quick walkthrough of how to use the app to take the guess work out. It's really fast and really simple.
+First click on the top left button to "Create a new user". Afterwards click on "add" button on the top right to create a new budget. After it appears, tap on it. You'll be greeted with a sharing screen, if you don't wish to share just close out of it. Then you can press on the "add" button on the top right to create a new item. That's it. 
 <img style="float: right;" width="300" height="600" src="ReadMeAssets/WalkthroughDemo.gif"> 
 
 # Features
